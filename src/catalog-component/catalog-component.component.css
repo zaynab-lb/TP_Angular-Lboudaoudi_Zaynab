@@ -1,0 +1,115 @@
+/* Conteneur principal */
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  list-style-type: none;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Cartes de produits */
+li {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 220px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Image du produit */
+img {
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+}
+
+/* Titre du produit */
+span {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* Bouton */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Style pour quantité faible */
+.low-quantity {
+  position: relative;
+  border: 2px solid #ff9800;
+}
+
+.low-quantity::after {
+  content: "Stock faible";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: #ff9800;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* Détails du produit */
+app-product-details-component {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 0 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  ul {
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  li {
+    width: 160px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  li {
+    width: 80%;
+  }
+}

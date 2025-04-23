@@ -1,0 +1,8 @@
+<div *ngIf="product" class="product-details">
+  <h3>Détails du produit</h3>
+  <img [src]="product.getProductImage()" alt="{{ product.getProductTitle() }}" class="detail-image">
+  <p><strong>ID:</strong> <span>{{ product.getProductId() }}</span></p>
+  <p><strong>Titre:</strong> <span>{{ product.getProductTitle() }}</span></p>
+  <p><strong>Prix:</strong> <span class="price">{{ product.getProductPrice() }} DH</span></p>
+  <p class="quantity"><strong>Quantité:</strong> <span [class.low]="product.getProductQuantity() < 10">{{ product.getProductQuantity() }}</span></p>
+</div>

@@ -1,0 +1,14 @@
+<ul>
+  <ng-container *ngFor="let product of products">
+    <li *ngIf="product.getProductQuantity() > 0"
+        [class.low-quantity]="product.getProductQuantity() < 10">
+      <img [src]="product.getProductImage()" alt="{{ product.getProductTitle() }}" width="50" height="50">
+      <span>{{ product.getProductTitle() }}</span>
+      <button (click)="selectProduct(product)">
+        {{ selectedProduct === product ? 'Cacher' : 'Détails' }}
+      </button>
+    </li>
+  </ng-container>
+</ul>
+
+<app-product-details-component [product]="selectedProduct"></app-product-details-component>
