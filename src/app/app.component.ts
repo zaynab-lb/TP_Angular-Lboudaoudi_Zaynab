@@ -12,12 +12,9 @@ import { ProductDetailsComponent } from "../product-details-component/product-de
 })
 export class AppComponent {
   title = 'TP2';
-
   selectedProduct: Product | null = null;
-  onProductSelected(product: Product) {
-    if (this.selectedProduct === product)
-      this.selectedProduct = null; // Toggle: cacher si déjà sélectionné
-    else
-    this.selectedProduct = product; // Afficher si différent
+
+  onProductSelected(product: Product | null) {
+    this.selectedProduct = product;
   }
 }
