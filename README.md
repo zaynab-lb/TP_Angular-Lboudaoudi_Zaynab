@@ -1,3 +1,26 @@
+TP Angular :
+
+Nom et Prenom     : Lboudaoudi Zaynab
+Num d'inscription : DCC0005/24
+
+Le catalogue avant l'authentification : 
+<img width="920" alt="image" src="https://github.com/user-attachments/assets/3b3a537a-6a5c-4f67-abbf-efdff3eb8a0c" />
+
+La page d'authentification :
+
+<img width="242" alt="image" src="https://github.com/user-attachments/assets/1c984690-283b-4b8b-925b-e82bd91d98f5" />
+
+Le catalogue après l'authentification :
+<img width="917" alt="image" src="https://github.com/user-attachments/assets/5a7b6328-14d2-46c0-864c-efb52e1dd6e8" />
+
+L'affichage des détails:
+<img width="875" alt="image" src="https://github.com/user-attachments/assets/cbbb6bca-8c42-4c5d-aca3-aa26eae0f380" />
+
+Le filtrage par catégorie : 
+<img width="920" alt="image" src="https://github.com/user-attachments/assets/2b393964-1cbd-451c-a0da-b237cee3f99e" />
+
+
+
 # TPAngularLboudaoudiZaynab
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
@@ -58,13 +81,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 =======
-TP Angular :
-
-Nom et Prenom     : Lboudaoudi Zaynab
-Num d'inscription : DCC0005/24
-
-L'affichage des produits desponibles :
-<img width="919" alt="page1" src="https://github.com/user-attachments/assets/e03d62ba-ef7d-4248-b4b8-6875a36962b5" />
-
-L'affichage des détails:
-<img width="919" alt="page2" src="https://github.com/user-attachments/assets/6f71053b-7c30-4eeb-9df8-1601380b3128" />
