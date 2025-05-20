@@ -3,37 +3,69 @@ import { Product } from '../models/Product';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from "../product-details-component/product-details-component.component";
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../services/product/product.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-catalog-component',
   standalone: true,
-  imports: [FormsModule, CommonModule, ProductDetailsComponent],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './catalog-component.component.html',
-  styleUrl: './catalog-component.component.css',
+  styleUrls: ['./catalog-component.component.css'],
 })
 export class CatalogComponent implements OnInit {
   @Input() selectedProduct: Product | null = null;
   @Output() productSelected = new EventEmitter<Product>();
 
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  isAuthenticated: boolean = false;
+  userName: string = '';
 
-  constructor(private productService: ProductService) {}
+  @Input()
+  myValue: string = "";
+  filter: string = "";
+
+
+
+  constructor(private productService: ProductService, private route: ActivatedRoute, private userService: UserService) {}
+
 
   ngOnInit(): void {
-    this.loadProducts();
+    this.checkAuthStatus();
+    this.loadProducts(this.filteredProducts);
+    this.route.queryParams.subscribe(params => {
+      const filter = params['filter'];
+      this.loadProducts(filter);
+      this.filteredProducts = filter ? this.products.filter(p => p.ProductCategory === filter) : this.products;
+    });
   }
 
-  private loadProducts(): void {
+  checkAuthStatus(): void {
+    this.isAuthenticated = this.userService.isAuthenticated();
+    if (this.isAuthenticated) {
+      const user = this.userService.getCurrentUser();
+      this.userName = user ? user.fullName() : '';
+    }
+  }
+
+  signOut(): void {
+    this.userService.signOut();
+    this.isAuthenticated = false;
+    this.userName = '';
+  }
+
+  private loadProducts(filter: any): void {
     this.productService.getProducts().subscribe({
       next: (products: Product[]) => {
         this.products = products;
       },
       error: (error) => {
         console.error('Error loading products:', error);
-        // Vous pourriez ajouter ici une gestion d'erreur plus élaborée
       }
     });
   }

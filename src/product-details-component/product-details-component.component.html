@@ -1,8 +1,19 @@
 <div *ngIf="product" class="product-details">
-  <h3>Détails du produit</h3>
-  <img [src]="product.getProductImage()" alt="{{ product.getProductTitle() }}" class="detail-image">
-  <p><strong>ID:</strong> <span>{{ product.getProductId() }}</span></p>
-  <p><strong>Titre:</strong> <span>{{ product.getProductTitle() }}</span></p>
-  <p><strong>Prix:</strong> <span class="price">{{ product.getProductPrice() }} DH</span></p>
-  <p class="quantity"><strong>Quantité:</strong> <span [class.low]="product.getProductQuantity() < 10">{{ product.getProductQuantity() }}</span></p>
+  <div class="detail-header">
+    <img [src]="product.ProductImage" [alt]="product.ProductTitle" class="detail-image">
+    
+    <div class="detail-content">
+      <h1 class="detail-title">{{ product.ProductTitle }}</h1>
+      <div class="detail-price">{{ product.ProductPrice | currency:'DH ':'symbol':'1.2-2' }}</div>
+      
+      <div class="detail-meta">
+        <span class="detail-category">{{ product.ProductCategory }}</span>
+        <span class="detail-quantity" [class.low]="product.ProductQuantity < 10">
+          {{ product.ProductQuantity }} en stock
+        </span>
+      </div>
+      
+      <a routerLink="/catalog" routerLinkActive="active" class="back-button">← Retour au catalogue</a>
+    </div>
+  </div>
 </div>

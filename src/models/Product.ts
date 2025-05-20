@@ -3,13 +3,15 @@ export class Product{
     private productTitle: string;
     private productPrice: number;
     private productQuantity: number = 0;
+    private productCategory: string;
     private productImage: string;
 
-    constructor(productId: number, productTitle: string, productPrice: number, productQuantity: number, productImage: string) {
+    constructor(productId: number, productTitle: string, productPrice: number, productQuantity: number, productCategory: string, productImage: string) {
         this.productId = productId;
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
+        this.productCategory = productCategory;
         this.productImage = productImage;
     }
 
@@ -17,43 +19,52 @@ export class Product{
         return `Product ID: ${this.productId}, Title: ${this.productTitle}, Price: ${this.productPrice}`;
     }
 
-    public getProductId(): number {
+    public get ProductId(): number {
         return this.productId;
     }
     
-    public setProductId(productId: number): void {
+    public set ProductId(productId: number) {
         this.productId = productId;
     }
 
-    public getProductTitle(): string {
+    public get ProductTitle(): string {
         return this.productTitle;
     }
 
-    public setProductTitle(productTitle: string): void {
+    public set ProductTitle(productTitle: string) {
+
         this.productTitle = productTitle;
     }
 
-    public getProductPrice(): number {
+    public get ProductPrice(): number {
         return this.productPrice;
     }
 
-    public setProductPrice(productPrice: number): void {
+    public set ProductPrice(productPrice: number) {
         this.productPrice = productPrice;
     }
 
-    public getProductQuantity(): number {
+    public get ProductQuantity(): number {
         return this.productQuantity;
     }
 
-    public setProductQuantity(productQuantity: number): void {
+    public set ProductQuantity(productQuantity: number) {
         this.productQuantity = productQuantity;
     }
 
-    public getProductImage(): string {
+    public get ProductCategory(): string {
+        return this.productCategory;
+    }
+
+    public set ProductCategory(productCategory: string) {
+        this.productCategory = productCategory;
+    }
+
+    public get ProductImage(): string {
         return this.productImage;
     }
 
-    public setProductImage(productImage: string): void {
+    public set ProductImage(productImage: string){
         this.productImage = productImage;
     }
 }

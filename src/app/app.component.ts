@@ -6,7 +6,7 @@ import { ProductDetailsComponent } from "../product-details-component/product-de
 
 @Component({
   selector: 'app-root',
-  imports: [CatalogComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

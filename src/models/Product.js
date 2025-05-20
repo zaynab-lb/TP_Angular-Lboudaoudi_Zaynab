@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 var Product = /** @class */ (function () {
-    function Product(productId, productTitle, productPrice, productQuantity, productImage) {
+    function Product(productId, productTitle, productPrice, productQuantity, productCategory, productImage) {
         this.productQuantity = 0;
         this.productId = productId;
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
+        this.productCategory = productCategory;
         this.productImage = productImage;
     }
     Product.prototype.printProduct = function () {
@@ -36,6 +37,12 @@ var Product = /** @class */ (function () {
     };
     Product.prototype.setProductQuantity = function (productQuantity) {
         this.productQuantity = productQuantity;
+    };
+    Product.prototype.getProductCategory = function () {
+        return this.productCategory;
+    };
+    Product.prototype.setProductCategory = function (productCategory) {
+        this.productCategory = productCategory;
     };
     Product.prototype.getProductImage = function () {
         return this.productImage;

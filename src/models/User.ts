@@ -1,3 +1,7 @@
+export interface IUserCredentials {
+  email: string;
+  password: string;
+}
 enum UserType {
     Admin = "Admin",
     Member = "Member",
@@ -7,15 +11,19 @@ export class User {
     private userId: number;
     private firstName: string;
     private lastName: string;
+    private email: string;
+    private password: string;
     private age: number;
     private userType: UserType;
 
-    constructor(userId: number, firstName: string, lastName: string, age: number) {
+    constructor(userId: number, firstName: string, lastName: string, age: number, email: string, password: string) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.userType = UserType.Member; // Default user type
+        this.userType = UserType.Member;
+        this.email = email;
+        this.password = password;
     }
 
     public fullName(): string {
@@ -33,11 +41,11 @@ export class User {
         }
     }
 
-    public getUserId(): number {
+    public get UserId(): number {
         return this.userId;
     }
 
-    public setUserId(userId: number): void {
+    public set UserId(userId: number) {
         this.userId = userId;
     }
 
@@ -45,31 +53,43 @@ export class User {
         return this.firstName;
     }
 
-    public setFirstName(firstName: string): void {
+    public set FirstName(firstName: string) {
         this.firstName = firstName;
     }
 
-    public getLastName(): string {
+    public get LastName(): string {
         return this.lastName;
     }
 
-    public setLastName(lastName: string): void {
+    public set LastName(lastName: string) {
         this.lastName = lastName;
     }
 
-    public getAge(): number {
+    public get Age(): number {
         return this.age;
     }
 
-    public setAge(age: number): void {
+    public set Age(age: number){
         this.age = age;
     }
 
-    public getUserType(): UserType {
+    public get UserType(): UserType {
         return this.userType;
     }
     
-    public setUserType(userType: UserType): void {
+    public set UserType(userType: UserType) {
         this.userType = userType;
+    }
+    public get Email(): string {
+        return this.email;
+    }
+    public set Email(email: string) {
+        this.email = email;
+    }
+    public get Password(): string {
+        return this.password;
+    }
+    public set Password(password: string){
+        this.password = password;
     }
 }

@@ -8,12 +8,14 @@ var UserType;
     UserType["Guest"] = "Guest";
 })(UserType || (UserType = {}));
 var User = /** @class */ (function () {
-    function User(userId, firstName, lastName, age) {
+    function User(userId, firstName, lastName, age, email, password) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.userType = UserType.Member; // Default user type
+        this.userType = UserType.Member;
+        this.email = email;
+        this.password = password;
     }
     User.prototype.fullName = function () {
         return "".concat(this.firstName, " ").concat(this.lastName);
@@ -28,36 +30,76 @@ var User = /** @class */ (function () {
                 return "Welcome Guest, feel free to explore.";
         }
     };
-    User.prototype.getUserId = function () {
-        return this.userId;
-    };
-    User.prototype.setUserId = function (userId) {
-        this.userId = userId;
-    };
+    Object.defineProperty(User.prototype, "UserId", {
+        get: function () {
+            return this.userId;
+        },
+        set: function (userId) {
+            this.userId = userId;
+        },
+        enumerable: false,
+        configurable: true
+    });
     User.prototype.getFirstName = function () {
         return this.firstName;
     };
-    User.prototype.setFirstName = function (firstName) {
-        this.firstName = firstName;
-    };
-    User.prototype.getLastName = function () {
-        return this.lastName;
-    };
-    User.prototype.setLastName = function (lastName) {
-        this.lastName = lastName;
-    };
-    User.prototype.getAge = function () {
-        return this.age;
-    };
-    User.prototype.setAge = function (age) {
-        this.age = age;
-    };
-    User.prototype.getUserType = function () {
-        return this.userType;
-    };
-    User.prototype.setUserType = function (userType) {
-        this.userType = userType;
-    };
+    Object.defineProperty(User.prototype, "FirstName", {
+        set: function (firstName) {
+            this.firstName = firstName;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "LastName", {
+        get: function () {
+            return this.lastName;
+        },
+        set: function (lastName) {
+            this.lastName = lastName;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "Age", {
+        get: function () {
+            return this.age;
+        },
+        set: function (age) {
+            this.age = age;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "UserType", {
+        get: function () {
+            return this.userType;
+        },
+        set: function (userType) {
+            this.userType = userType;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "Email", {
+        get: function () {
+            return this.email;
+        },
+        set: function (email) {
+            this.email = email;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "Password", {
+        get: function () {
+            return this.password;
+        },
+        set: function (password) {
+            this.password = password;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return User;
 }());
 exports.User = User;
