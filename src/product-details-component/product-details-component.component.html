@@ -1,6 +1,6 @@
 <div *ngIf="product" class="product-details">
   <div class="detail-header">
-    <img [src]="product.ProductImage" [alt]="product.ProductTitle" class="detail-image">
+    <img [src]="product.ProductImage" [alt]="product.ProductTitle" class="detail-image" i18n-alt>
     
     <div class="detail-content">
       <h1 class="detail-title">{{ product.ProductTitle }}</h1>
@@ -8,12 +8,12 @@
       
       <div class="detail-meta">
         <span class="detail-category">{{ product.ProductCategory }}</span>
-        <span class="detail-quantity" [class.low]="product.ProductQuantity < 10">
+        <span class="detail-quantity" [class.low]="product.ProductQuantity < 10" i18n>
           {{ product.ProductQuantity }} en stock
         </span>
       </div>
-      
-      <a routerLink="/catalog" routerLinkActive="active" class="back-button">← Retour au catalogue</a>
+
+      <a routerLink="/catalog" routerLinkActive="active" class="back-button" i18n>← Retour au catalogue</a>
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@
     
     <form #signInForm="ngForm" (ngSubmit)="signIn()" class="signin-form">
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email" i18n>Email</label>
         <input 
           id="email" 
           name="email" 
@@ -14,15 +14,15 @@
           email 
           #email="ngModel"
           class="form-control"
-          placeholder="Entrez votre email">
+          i18n-placeholder="Entrez votre email">
         <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
-          <div *ngIf="email.errors?.['required']">L'email est requis</div>
-          <div *ngIf="email.errors?.['email']">Format d'email invalide</div>
+          <div *ngIf="email.errors?.['required']" i18n>L'email est requis</div>
+          <div *ngIf="email.errors?.['email']" i18n>Format d'email invalide</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="password">Mot de passe</label>
+        <label for="password" i18n>Mot de passe</label>
         <input 
           id="password" 
           name="password" 
@@ -31,8 +31,8 @@
           required 
           #password="ngModel"
           class="form-control"
-          placeholder="Entrez votre mot de passe">
-        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          i18n-placeholder="Entrez votre mot de passe">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message" i18n>
           Le mot de passe est requis
         </div>
       </div>
@@ -40,11 +40,11 @@
       <button 
         type="submit" 
         [disabled]="signInForm.invalid" 
-        class="signin-button">
+        class="signin-button" i18n>
         Se connecter
       </button>
 
-      <div *ngIf="signInError" class="error-message text-center">
+      <div *ngIf="signInError" class="error-message text-center" i18n>
         Email ou mot de passe incorrect
       </div>
     </form>

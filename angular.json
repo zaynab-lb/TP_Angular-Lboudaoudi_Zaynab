@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "TP_Angular-Lboudaoudi_Zaynab": {
+      "i18n": {
+        "sourceLocale": "fr-CA",
+        "locales": {
+            "en-US": "src/locale/messages.en.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,11 +19,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": ["en-US"],
             "outputPath": "dist/tp-angular-lboudaoudi-zaynab",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -83,7 +91,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
