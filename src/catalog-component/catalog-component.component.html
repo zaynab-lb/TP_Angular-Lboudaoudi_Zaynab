@@ -1,48 +1,48 @@
 <div class="container">
   <div class="header">
     <div class="auth-section">
-      <button *ngIf="!isAuthenticated" routerLink="/signin" class="auth-button" i18n>
+      <button *ngIf="!isAuthenticated" routerLink="/signin" class="auth-button">
         Se connecter
       </button>
       <div *ngIf="isAuthenticated" class="user-info">
-        <span i18n>Bienvenue, {{userName}}</span>
-        <button (click)="signOut()" class="auth-button" i18n>
+        <span>Bienvenue, {{userName}}</span>
+        <button (click)="signOut()" class="auth-button">
           Déconnexion
         </button>
       </div>
     </div>
   </div>
 
-<div class="container">
   <div class="filters">
-    <a routerLink="/catalog" [queryParams]="{filter:'Ecran'}" routerLinkActive="active" class="button" i18n>Écrans</a>
-    <a routerLink="/catalog" [queryParams]="{filter:'Ordinateur'}" routerLinkActive="active" class="button" i18n>Ordinateurs</a>
-    <a routerLink="/catalog" [queryParams]="{filter:'Clavier'}" routerLinkActive="active" class="button" i18n>Claviers</a>
-    <a routerLink="/catalog" [queryParams]="{filter:'Souris'}" routerLinkActive="active" class="button" i18n>Souris</a>
-    <a routerLink="/catalog" [queryParams]="{filter:'Accessoires'}" routerLinkActive="active" class="button" i18n>Accessoires</a>
-    <a routerLink="/catalog" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="button" i18n>Tous les produits</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Ecran'}" routerLinkActive="active" class="button">Écrans</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Ordinateur'}" routerLinkActive="active" class="button">Ordinateurs</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Clavier'}" routerLinkActive="active" class="button">Claviers</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Souris'}" routerLinkActive="active" class="button">Souris</a>
+    <a routerLink="/catalog" [queryParams]="{filter:'Accessoires'}" routerLinkActive="active" class="button">Accessoires</a>
+    <a routerLink="/catalog" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="button">Tous les produits</a>
   </div>
 
   <div class="products-grid">
     <ng-container *ngFor="let product of filteredProducts">
       <div *ngIf="product.ProductQuantity > 0" class="product-card">
         <div class="product-image-container">
-          <img [src]="product.ProductImage" [alt]="product.ProductTitle" class="product-image" i18n-alt>
+          <img [src]="product.ProductImage" [alt]="product.ProductTitle" class="product-image">
         </div>
         <div class="product-info">
           <h3 class="product-title">{{ product.ProductTitle }}</h3>
           <div class="product-price">{{ product.ProductPrice | currency:'DH ':'symbol':'1.2-2' }}</div>
-          <div [class.low-quantity]="product.ProductQuantity < 10" i18n>
+          <div [class.low-quantity]="product.ProductQuantity < 10">
             Stock: {{ product.ProductQuantity }}
           </div>
           <div class="product-actions">
-            <a [routerLink]="['/product-details', product.ProductId]" class="details-button" i18n>Voir détails</a>
+            <a [routerLink]="['/product-details', product.ProductId]" class="details-button">Voir détails</a>
           </div>
         </div>
       </div>
     </ng-container>
   </div>
 </div>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">

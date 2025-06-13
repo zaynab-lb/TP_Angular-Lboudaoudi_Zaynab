@@ -37,11 +37,11 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkAuthStatus();
-    this.loadProducts(this.filteredProducts);
+    //this.loadProducts(this.filteredProducts);
     this.route.queryParams.subscribe(params => {
-      const filter = params['filter'];
+      const filter = params['filter'] || null;
       this.loadProducts(filter);
-      this.filteredProducts = filter ? this.products.filter(p => p.ProductCategory === filter) : this.products;
+      //this.filteredProducts = filter ? this.products.filter(p => p.ProductCategory === filter) : this.products;
     });
   }
 
@@ -59,10 +59,13 @@ export class CatalogComponent implements OnInit {
     this.userName = '';
   }
 
-  private loadProducts(filter: any): void {
+  private loadProducts(filter: string | null): void {
     this.productService.getProducts().subscribe({
       next: (products: Product[]) => {
         this.products = products;
+        this.filteredProducts = filter
+          ? products.filter(p => p.ProductCategory === filter)
+          : products;
       },
       error: (error) => {
         console.error('Error loading products:', error);
