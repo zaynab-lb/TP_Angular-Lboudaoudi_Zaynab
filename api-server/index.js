@@ -154,6 +154,32 @@ app.post("/api/cart", (req, res) => {
 
 app.get("/api/cart", (req, res) => res.send(cart));
 
+app.post("/api/signup", (req, res) => {
+  const { email, password, firstName, lastName, age, userType } = req.body;
+
+  if (userType !== "Member") {
+    return res.status(400).send("Seuls les utilisateurs de type Member peuvent s'inscrire.");
+  }
+
+  if (users[email]) {
+    return res.status(409).send("Utilisateur déjà existant.");
+  }
+
+  const userId = Object.keys(users).length + 1;
+  users[email] = {
+    userId,
+    firstName,
+    lastName,
+    email,
+    password,
+    age,
+    userType
+  };
+
+  res.status(201).send({ message: "Utilisateur créé avec succès." });
+});
+
+
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));
 

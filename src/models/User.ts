@@ -1,12 +1,21 @@
-export interface IUserCredentials {
-  email: string;
-  password: string;
-}
-enum UserType {
+export enum UserType {
     Admin = "Admin",
     Member = "Member",
     Guest = "Guest"
 }
+
+export interface IUserCredentials {
+  email: string;
+  password: string;
+}
+
+export interface IRegisterData extends IUserCredentials {
+  firstName: string;
+  lastName: string;
+  age: number;
+  userType: UserType;
+}
+
 export class User {
     private userId: number;
     private firstName: string;

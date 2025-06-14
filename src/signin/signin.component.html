@@ -30,7 +30,8 @@
           [(ngModel)]="credentials.password" 
           required 
           #password="ngModel"
-          class="form-control">
+          class="form-control"
+          placeholder="Entrez votre mot de passe">
         <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
           Le mot de passe est requis
         </div>
@@ -47,5 +48,10 @@
         Email ou mot de passe incorrect
       </div>
     </form>
+    <p class="text-center mt-3">
+  Vous n'avez pas de compte ? 
+  <a routerLink="/signup" >Inscrivez-vous ici</a>
+</p>
   </div>
+  
 </div>

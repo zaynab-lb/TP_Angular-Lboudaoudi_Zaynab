@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../../models/User';
+import { User , UserType, IUserCredentials, IRegisterData } from '../../models/User';
 
-export interface IUserCredentials {
-  email: string;
-  password: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +16,14 @@ export class UserService {
     return this.http.post('/api/signin', credentials);
   }
 
+  signUp(userData: IRegisterData): Observable<any> {
+  if (userData.userType !== UserType.Member) {
+    throw new Error("Seuls les utilisateurs de type Member peuvent s'inscrire");
+  }
+  return this.http.post('/api/signup', userData); 
+}
+
+
   getCurrentUser(): User | null {
     return this.currentUser;
   }
@@ -32,9 +36,8 @@ export class UserService {
         userData.lastName,
         userData.email,
         userData.password,
-        userData.address,
+        userData.userType || UserType.Member
       );
-      this.currentUser.UserType = userData.userType;
     }
   }
 

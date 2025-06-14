@@ -1,0 +1,40 @@
+<div class="signup-container">
+  <div class="signup-card">
+    <h2 class="signup-title">Inscription</h2>
+
+    <form #signUpForm="ngForm" (ngSubmit)="signUp()" class="signup-form">
+      <div class="form-group">
+        <label for="firstName">Prénom</label>
+        <input id="firstName" name="firstName" [(ngModel)]="registerData.firstName" required class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Nom</label>
+        <input id="lastName" name="lastName" [(ngModel)]="registerData.lastName" required class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="age">Âge</label>
+        <input id="age" name="age" type="number" [(ngModel)]="registerData.age" required class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="registerData.email" required email class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input id="password" name="password" type="password" [(ngModel)]="registerData.password" required class="form-control" />
+      </div>
+
+      <button type="submit" [disabled]="signUpForm.invalid" class="signup-button">
+        S'inscrire
+      </button>
+
+      <div *ngIf="signUpError" class="error-message text-center">
+        Erreur lors de l'inscription.
+      </div>
+    </form>
+  </div>
+</div>

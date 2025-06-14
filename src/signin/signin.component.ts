@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router , RouterLink } from '@angular/router';
 import { UserService } from '../services/user/user.service';
 import { IUserCredentials } from '../models/User';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'bot-signin',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule , RouterLink],
   templateUrl: './signin.component.html',  
   styleUrls: ['./signin.component.css'],
 })
