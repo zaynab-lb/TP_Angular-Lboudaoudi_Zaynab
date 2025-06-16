@@ -18,14 +18,20 @@ export class SigninComponent {
  constructor(private userService: UserService, private router: Router) { }
 
   signIn() {
-    this.signInError = false;
-    this.userService.signIn(this.credentials).subscribe({
-      next: (userData) => {
-        this.userService.setCurrentUser(userData);
+  this.signInError = false;
+  this.userService.signIn(this.credentials).subscribe({
+    next: (userData) => {
+      this.userService.setCurrentUser(userData);
+      
+
+      if (userData.userType === 'Admin') {
+        this.router.navigate(['/home']);
+      } else if (userData.userType === 'Member') {
         this.router.navigate(['/catalog']);
-      },
-      error: () => (this.signInError = true)
-    });
-  }
+      }
+    },
+    error: () => (this.signInError = true)
+  });
+}
 
 }

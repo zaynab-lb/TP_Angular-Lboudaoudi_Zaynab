@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  constructor(public userService: UserService) {}
 
 }

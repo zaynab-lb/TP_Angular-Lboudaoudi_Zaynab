@@ -25,14 +25,14 @@ export class User {
     private age: number;
     private userType: UserType;
 
-    constructor(userId: number, firstName: string, lastName: string, age: number, email: string, password: string) {
+    constructor(userId: number, firstName: string, lastName: string, email: string, password: string, age: number) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
-        this.userType = UserType.Member;
+        this.userType = '' as UserType; // Default to empty string, should be set later
         this.email = email;
         this.password = password;
+        this.age = age;
     }
 
     public fullName(): string {
@@ -101,4 +101,5 @@ export class User {
     public set Password(password: string){
         this.password = password;
     }
+    
 }

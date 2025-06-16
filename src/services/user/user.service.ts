@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User , UserType, IUserCredentials, IRegisterData } from '../../models/User';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { User , UserType, IUserCredentials, IRegisterData } from '../../models/U
 export class UserService {
   private currentUser: User | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   signIn(credentials: IUserCredentials): Observable<any> {
     return this.http.post('/api/signin', credentials);
@@ -30,14 +31,22 @@ export class UserService {
 
   setCurrentUser(userData: any): void {
     if (userData) {
-      this.currentUser = new User(
-        userData.userId,
-        userData.firstName,
-        userData.lastName,
-        userData.email,
-        userData.password,
-        userData.userType || UserType.Member
-      );
+     this.currentUser = new User(
+      userData.userId,
+      userData.firstName,
+      userData.lastName,
+      userData.email,
+      userData.password,
+      userData.age
+    );
+
+    this.currentUser.UserType = userData.userType || UserType.Member;
+
+    if (this.currentUser.UserType === UserType.Admin) {
+        this.router.navigate(['/home']);
+      } else if (this.currentUser.UserType === UserType.Member) {
+        this.router.navigate(['/catalog']);
+      }
     }
   }
 
@@ -47,5 +56,13 @@ export class UserService {
 
   signOut(): void {
     this.currentUser = null;
+  }
+
+   isAdmin(): boolean {
+    return this.currentUser?.UserType === UserType.Admin;
+  }
+
+  isMember(): boolean {
+    return this.currentUser?.UserType === UserType.Member;
   }
 }

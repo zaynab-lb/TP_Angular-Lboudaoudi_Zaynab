@@ -14,6 +14,8 @@ let cart = [];
     lastName: "Lboudaoudi",
     email: "zaynab@gmail.com",
     password: "zaynab",
+    age: 30,
+    userType: "Admin"
   },
   "safae@gmail.com": {
     userId: 2,
@@ -21,6 +23,8 @@ let cart = [];
     lastName: "Hamdi",
     email: "safae@gmail.com",
     password: "safae",
+    age: 25,
+    userType: "Member"
   },
   "email@email.com": {
     userId: 3,
@@ -28,6 +32,8 @@ let cart = [];
     lastName: "Ks",
     email: "email@email.com",
     password: "test",
+    age: 28,
+    userType: "Member"
   }
 };
 app.post("/api/signin", (req, res) => {
