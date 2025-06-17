@@ -7,6 +7,9 @@
   </div>
 
   <div *ngIf="cartService.getItems().length > 0">
+    <div class="cart-actions">
+      <button (click)="clearCart()" class="clear-cart-button">Vider le panier</button>
+    </div>
     <div class="cart-items">
       <div *ngFor="let item of cartService.getItems()" class="cart-item">
         <img [src]="item.getItemProduct().ProductImage" [alt]="item.getItemProduct().ProductTitle" class="cart-item-image">

@@ -48,4 +48,9 @@ export class ShoppingCart{
     public setTotal(total: number): void {
         this.total = total;
     }
+
+    public clear(): void {
+    this.itemsProduct = [];
+    this.total = 0.0;
+  }
 }

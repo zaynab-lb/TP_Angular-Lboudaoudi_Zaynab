@@ -12,4 +12,10 @@ import { ShoppingCartService } from '../services/shopping-cart/shopping-cart.ser
 })
 export class CartComponent {
   constructor(public cartService: ShoppingCartService) {}
+
+  clearCart(): void {
+    if (confirm('Êtes-vous sûr de vouloir vider votre panier ?')) {
+      this.cartService.clearCart();
+    }
+  }
 }

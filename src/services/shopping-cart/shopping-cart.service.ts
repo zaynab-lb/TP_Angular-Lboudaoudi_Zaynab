@@ -64,4 +64,12 @@ export class ShoppingCartService {
       // Implémentez la logique pour charger les items dans le panier
     });
   }
+
+  clearCart(): void {
+    const user = this.userService.getCurrentUser();
+    if (user) {
+      this.carts[user.UserId] = new ShoppingCart();
+      this.saveCart();
+    }
+  }
 }
