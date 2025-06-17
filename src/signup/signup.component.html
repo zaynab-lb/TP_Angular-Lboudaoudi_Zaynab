@@ -35,6 +35,11 @@
       <div *ngIf="signUpError" class="error-message text-center">
         Erreur lors de l'inscription.
       </div>
+
+      <div class="login-redirect">
+        <span>Déjà un compte ?</span>
+        <a routerLink="/signin" class="login-link">Connectez-vous ici</a>
+      </div>
     </form>
   </div>
 </div>

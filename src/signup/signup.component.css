@@ -1,146 +1,105 @@
-/* signup.component.css */
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(to bottom right, #f3e5f5, #ede7f6);
   padding: 2rem;
 }
 
 .signup-card {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 2.5rem 3rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(137, 86, 221, 0.2);
+  max-width: 480px;
   width: 100%;
-  max-width: 500px;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .signup-title {
   text-align: center;
-  margin-bottom: 2rem;
-  color: #2c3e50;
   font-size: 2rem;
+  color: #6a1b9a;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.signup-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.signup-form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #5e4b6e;
   font-weight: 600;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group {
-  position: relative;
-  width: 100%;
 }
 
 .form-control {
-  padding: 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
   width: 100%;
-  transition: all 0.3s ease;
-  background: transparent;
-  box-sizing: border-box;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #d1c4e9;
+  background-color: #fafafa;
+  font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
 .form-control:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-}
-
-.form-group label {
-  position: absolute;
-  top: -10px;
-  left: 15px;
-  background: white;
-  padding: 0 8px;
-  font-size: 0.85rem;
-  color: #667eea;
-  font-weight: 500;
+  border-color: #ab47bc;
+  background-color: #fff;
 }
 
 .signup-button {
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  color: white;
-  padding: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 30px;
+  color: white;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
   margin-top: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  width: 100%;
+  box-shadow: 0 4px 12px rgba(137, 86, 221, 0.3);
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.signup-button:hover {
+.signup-button:hover:enabled {
+  background: linear-gradient(to right, #8e44ad, #e598cb);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .signup-button:disabled {
-  background: #bdc3c7;
-  transform: none;
-  box-shadow: none;
+  background-color: #c9bcd3;
   cursor: not-allowed;
 }
 
 .error-message {
-  color: #ff4757;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  margin-top: 1rem;
+  color: #d32f2f;
+  background-color: #fdecea;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
 }
 
-.text-center {
-  text-align: center;
+.login-redirect {
   margin-top: 1.5rem;
-  color: #7f8c8d;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #5e4b6e;
 }
 
-.text-center a {
-  color: #667eea;
+.login-link {
+  color: #7e57c2;
   text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
+  font-weight: 500;
+  margin-left: 0.4rem;
+  transition: color 0.3s;
 }
 
-.text-center a:after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #667eea;
-  transition: width 0.3s ease;
-}
-
-.text-center a:hover:after {
-  width: 100%;
-}
-
-/* Animation */
-@keyframes scaleIn {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.signup-card {
-  animation: scaleIn 0.5s ease-out forwards;
+.login-link:hover {
+  color: #4a148c;
 }

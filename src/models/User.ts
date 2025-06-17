@@ -58,7 +58,7 @@ export class User {
         this.userId = userId;
     }
 
-    public getFirstName(): string {
+    public get FirstName(): string {
         return this.firstName;
     }
 

@@ -1,21 +1,5 @@
+<app-menu></app-menu>
 <div class="container">
-  <div class="header">
-    <div class="auth-section">
-      <button *ngIf="!isAuthenticated" routerLink="/signin" class="auth-button">
-        Se connecter
-      </button>
-      <div *ngIf="isAuthenticated" class="user-info">
-        <span>Bienvenue, {{userName}}</span>
-        <button routerLink="/cart" class="cart-button">
-          🛒 Panier
-        </button>
-        <button (click)="signOut()" class="auth-button">
-          Déconnexion
-        </button>
-      </div>
-    </div>
-  </div>
-
   <div class="filters">
     <a routerLink="/catalog" [queryParams]="{filter:'Ecran'}" routerLinkActive="active" class="button">Écrans</a>
     <a routerLink="/catalog" [queryParams]="{filter:'Ordinateur'}" routerLinkActive="active" class="button">Ordinateurs</a>
@@ -45,7 +29,3 @@
     </ng-container>
   </div>
 </div>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">

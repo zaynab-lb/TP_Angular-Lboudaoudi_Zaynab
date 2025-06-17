@@ -1,0 +1,71 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #a18cd1, #fbc2eb); /* dégradé mauve/rose */
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 16px 16px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-brand .logo .name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #ffe4f2;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  background-color: #d291bc;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #b06ab3;
+}
+
+.cart-btn .badge {
+  background-color: #fff;
+  color: #a64ac9;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-right: 5px;
+  font-size: 0.8rem;
+}
+
+.welcome {
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}

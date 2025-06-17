@@ -5,14 +5,33 @@ import { ShoppingCart} from '../../models/ShoppingCart';
 import { UserService } from '../user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { ShoppingCartItem } from '../../models/ShoppingCartItem';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
   private carts: {[key: number]: ShoppingCart} = {};
+  private cartItemCountSubject = new BehaviorSubject<number>(0);
 
-  constructor(private userService: UserService, private http: HttpClient) {}
+  constructor(private userService: UserService, private http: HttpClient) {
+    this.updateCartItemCount();
+  }
+
+  getCartItemCount(): Observable<number> {
+    return this.cartItemCountSubject.asObservable();
+  }
+
+  // Méthode pour mettre à jour le compteur
+  private updateCartItemCount(): void {
+    const user = this.userService.getCurrentUser();
+    if (user && this.carts[user.UserId]) {
+      const count = this.carts[user.UserId].getItems().reduce((total, item) => total + item.getQuantity(), 0);
+      this.cartItemCountSubject.next(count);
+    } else {
+      this.cartItemCountSubject.next(0);
+    }
+  }
 
   private getCurrentCart(): ShoppingCart {
     const user = this.userService.getCurrentUser();
@@ -34,6 +53,7 @@ export class ShoppingCartService {
     const item = new ShoppingCartItem(product, quantity);
     cart.addItem(item);
     this.saveCart();
+    this.updateCartItemCount();
   }
 
   removeItem(product: Product, quantity: number = 1): void {
@@ -41,6 +61,7 @@ export class ShoppingCartService {
     const item = new ShoppingCartItem(product, quantity);
     cart.removeItem(item);
     this.saveCart();
+    this.updateCartItemCount();
   }
 
   getItems() {
@@ -62,6 +83,7 @@ export class ShoppingCartService {
   private loadCart(userId: number): void {
     this.http.get('/api/cart').subscribe((items: any) => {
       // Implémentez la logique pour charger les items dans le panier
+      this.updateCartItemCount();
     });
   }
 
@@ -70,6 +92,7 @@ export class ShoppingCartService {
     if (user) {
       this.carts[user.UserId] = new ShoppingCart();
       this.saveCart();
+       this.updateCartItemCount();
     }
   }
 }

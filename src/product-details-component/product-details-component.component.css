@@ -1,58 +1,29 @@
-/* Product Details - Cyberpunk Futurist Style */
 .product-details {
-  max-width: 1400px;
-  margin: 2rem auto;
+  max-width: 1000px;
+  margin: 3rem auto;
   padding: 2rem;
-  font-family: 'Inter', sans-serif;
-  background: #0a0a0a;
-  color: #e0e0e0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(137, 86, 221, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.3s;
 }
 
 .detail-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  background: #1a1a1a;
-  border-radius: 16px;
-  padding: 2.5rem;
-  border: 1px solid #333;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
-}
-
-.detail-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    transparent 45%,
-    rgba(0, 240, 255, 0.1) 50%,
-    transparent 55%
-  );
-  transform: rotate(30deg);
-  animation: shine 6s infinite linear;
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%) rotate(30deg); }
-  100% { transform: translateX(100%) rotate(30deg); }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  align-items: flex-start;
 }
 
 .detail-image {
   width: 100%;
-  max-height: 500px;
-  object-fit: contain;
-  border-radius: 8px;
-  background: #000;
-  padding: 1rem;
-  border: 1px solid #333;
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
-  transition: transform 0.3s ease;
+  max-width: 360px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(137, 86, 221, 0.15);
+  transition: transform 0.3s;
 }
 
 .detail-image:hover {
@@ -60,155 +31,105 @@
 }
 
 .detail-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  position: relative;
+  flex: 1;
 }
 
 .detail-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.2;
-  margin: 0;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  position: relative;
-}
-
-.detail-title::after {
-  content: '';
-  display: block;
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, #00f0ff, #ff00aa);
-  margin-top: 1rem;
-  border-radius: 2px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4a007e;
+  margin-bottom: 0.5rem;
 }
 
 .detail-price {
-  font-size: 2.2rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #00f0ff, #ff00aa);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-  letter-spacing: 1px;
+  font-size: 1.6rem;
+  color: #8e44ad;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
 }
 
 .detail-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 2rem;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: #5e4b6e;
 }
 
 .detail-category {
-  background: rgba(0, 240, 255, 0.1);
-  color: #00f0ff;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: 1px solid #00f0ff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  background-color: #e1c5f0;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 500;
 }
 
 .detail-quantity {
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 0, 170, 0.1);
-  color: #ff00aa;
-  border-radius: 50px;
-  border: 1px solid #ff00aa;
+  font-weight: bold;
 }
 
 .detail-quantity.low {
-  animation: pulse 2s infinite;
+  color: #e53935;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.quantity-selector button {
+  background-color: #a18cd1;
+  border: none;
+  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.quantity-selector button:hover {
+  background-color: #8e44ad;
+  transform: scale(1.1);
+}
+
+.quantity-selector span {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4a007e;
+}
+
+.add-to-cart {
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 1.8rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(137, 86, 221, 0.3);
+  transition: all 0.3s;
+}
+
+.add-to-cart:hover {
+  background: linear-gradient(to right, #8e44ad, #e598cb);
+  box-shadow: 0 5px 12px rgba(137, 86, 221, 0.4);
+  transform: translateY(-2px);
 }
 
 .back-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  background: #1a1a1a;
-  color: #00f0ff;
+  display: inline-block;
+  margin-top: 1.5rem;
   text-decoration: none;
-  font-weight: 600;
-  border-radius: 8px;
-  border: 1px solid #00f0ff;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-  width: fit-content;
-  margin-top: 2rem;
+  font-weight: 500;
+  color: #7e57c2;
+  transition: color 0.3s;
 }
 
 .back-button:hover {
-  background: rgba(0, 240, 255, 0.1);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-  transform: translateX(-5px);
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .detail-header {
-    grid-template-columns: 1fr;
-  }
-  
-  .detail-image {
-    max-height: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .product-details {
-    padding: 1.5rem;
-  }
-  
-  .detail-header {
-    padding: 1.5rem;
-  }
-  
-  .detail-title {
-    font-size: 2rem;
-  }
-  
-  .detail-price {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .product-details {
-    padding: 1rem;
-  }
-  
-  .detail-title {
-    font-size: 1.8rem;
-  }
-  
-  .detail-price {
-    font-size: 1.5rem;
-  }
-  
-  .detail-meta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .back-button {
-    width: 100%;
-    text-align: center;
-  }
+  color: #4a148c;
 }

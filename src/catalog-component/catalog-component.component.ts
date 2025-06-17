@@ -9,11 +9,12 @@ import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user/user.service';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-catalog-component',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule, MenuComponent],
   templateUrl: './catalog-component.component.html',
   styleUrls: ['./catalog-component.component.css'],
 })
