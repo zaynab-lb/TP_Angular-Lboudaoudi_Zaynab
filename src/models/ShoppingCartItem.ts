@@ -9,12 +9,12 @@ export class ShoppingCartItem {
     }
 
     public addProduct(item: ShoppingCartItem): void {
-        if (this.itemProduct.getProductId() === item.getItemProduct().getProductId())
+        if (this.itemProduct.ProductId === item.getItemProduct().ProductId)
             this.quantity += item.getQuantity();
     }
     
     public subtractProduct(item: ShoppingCartItem): void {
-        if (this.itemProduct.getProductId() === item.getItemProduct().getProductId())
+        if (this.itemProduct.ProductId === item.getItemProduct().ProductId)
             this.quantity -= item.getQuantity();
     }
 

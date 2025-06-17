@@ -1,1 +1,38 @@
-<p>cart travail!</p>
+<!-- cart.component.html -->
+<div class="cart-container">
+  <h2>Votre Panier</h2>
+  
+  <div *ngIf="cartService.getItems().length === 0" class="empty-cart">
+    Votre panier est vide
+  </div>
+
+  <div *ngIf="cartService.getItems().length > 0">
+    <div class="cart-items">
+      <div *ngFor="let item of cartService.getItems()" class="cart-item">
+        <img [src]="item.getItemProduct().ProductImage" [alt]="item.getItemProduct().ProductTitle" class="cart-item-image">
+        
+        <div class="cart-item-details">
+          <h3>{{ item.getItemProduct().ProductTitle }}</h3>
+          <div class="price">{{ item.getItemProduct().ProductPrice | currency:'DH ':'symbol':'1.2-2' }}</div>
+          
+          <div class="quantity-controls">
+            <button (click)="cartService.removeItem(item.getItemProduct(), 1)">-</button>
+            <span>{{ item.getQuantity() }}</span>
+            <button (click)="cartService.addItem(item.getItemProduct(), 1)">+</button>
+          </div>
+        </div>
+        
+        <div class="item-total">
+          {{ item.getItemProduct().ProductPrice * item.getQuantity() | currency:'DH ':'symbol':'1.2-2' }}
+        </div>
+      </div>
+    </div>
+    
+    <div class="cart-summary">
+      <div class="total">Total: {{ cartService.getTotal() | currency:'DH ':'symbol':'1.2-2' }}</div>
+      <button class="checkout-button">Passer la commande</button>
+    </div>
+  </div>
+  
+  <a routerLink="/catalog" class="continue-shopping">← Continuer vos achats</a>
+</div>

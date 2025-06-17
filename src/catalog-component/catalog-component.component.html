@@ -6,6 +6,9 @@
       </button>
       <div *ngIf="isAuthenticated" class="user-info">
         <span>Bienvenue, {{userName}}</span>
+        <button routerLink="/cart" class="cart-button">
+          🛒 Panier
+        </button>
         <button (click)="signOut()" class="auth-button">
           Déconnexion
         </button>

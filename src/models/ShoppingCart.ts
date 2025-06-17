@@ -8,7 +8,7 @@ export class ShoppingCart{
     public addItem(item: ShoppingCartItem): void {
         let found = false;
         for (let i = 0; i < this.itemsProduct.length; i++) {
-            if (this.itemsProduct[i].getItemProduct().getProductId() === item.getItemProduct().getProductId()) {
+            if (this.itemsProduct[i].getItemProduct().ProductId === item.getItemProduct().ProductId) {
                 this.itemsProduct[i].addProduct(item);
                 found = true;
                 break;
@@ -17,14 +17,14 @@ export class ShoppingCart{
         if (!found) {
             this.itemsProduct.push(item);
         }
-        this.total += item.getItemProduct().getProductPrice() * item.getQuantity();
+        this.total += item.getItemProduct().ProductPrice * item.getQuantity();
     }
 
     public removeItem(item: ShoppingCartItem): void {
         for (let i = 0; i < this.itemsProduct.length; i++) {
-            if (this.itemsProduct[i].getItemProduct().getProductId() === item.getItemProduct().getProductId()) {
+            if (this.itemsProduct[i].getItemProduct().ProductId === item.getItemProduct().ProductId) {
                 this.itemsProduct[i].subtractProduct(item);
-                this.total -= item.getItemProduct().getProductPrice() * item.getQuantity();
+                this.total -= item.getItemProduct().ProductPrice * item.getQuantity();
                 if (this.itemsProduct[i].getQuantity() <= 0) {
                     this.itemsProduct.splice(i, 1);
                 }

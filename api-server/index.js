@@ -185,6 +185,18 @@ app.post("/api/signup", (req, res) => {
   res.status(201).send({ message: "Utilisateur créé avec succès." });
 });
 
+let userCarts = {};
+
+app.post("/api/cart", (req, res) => {
+  const userId = req.body.userId; // Vous devrez envoyer l'userId depuis le front
+  userCarts[userId] = req.body.items;
+  setTimeout(() => res.status(201).send(), 20);
+});
+
+app.get("/api/cart", (req, res) => {
+  const userId = req.query.userId; // Envoyez l'userId en paramètre
+  res.send(userCarts[userId] || []);
+});
 
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

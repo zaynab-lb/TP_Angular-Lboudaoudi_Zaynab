@@ -13,6 +13,14 @@
         </span>
       </div>
 
+      <div class="quantity-selector">
+        <button (click)="quantity = quantity > 1 ? quantity - 1 : 1">-</button>
+        <span>{{ quantity }}</span>
+        <button (click)="quantity = quantity < product.ProductQuantity ? quantity + 1 : product.ProductQuantity">+</button>
+      </div>
+
+      <button (click)="addToCart()" class="add-to-cart">Ajouter au panier</button>
+
       <a routerLink="/catalog" routerLinkActive="active" class="back-button">← Retour au catalogue</a>
     </div>
   </div>

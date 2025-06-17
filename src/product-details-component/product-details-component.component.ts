@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from '../services/product/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { ShoppingCartService } from '../services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-product-details-component',
@@ -15,10 +16,12 @@ import { RouterModule } from '@angular/router';
 })
 export class ProductDetailsComponent {
   @Input() product: Product | null = null;
+  quantity: number = 1;
 
   constructor(
     private routes: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: ShoppingCartService
   ) {}
 
  ngOnInit(): void {
@@ -33,6 +36,13 @@ export class ProductDetailsComponent {
           console.error('Erreur chargement produit :', err);
         }
       });
+    }
+  }
+
+  addToCart(): void {
+    if (this.product && this.quantity > 0 && this.quantity <= (this.product.ProductQuantity || 0)) {
+      this.cartService.addItem(this.product, this.quantity);
+      alert('Produit ajouté au panier');
     }
   }
  
