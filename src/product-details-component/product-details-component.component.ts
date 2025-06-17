@@ -7,10 +7,11 @@ import { ProductService } from '../services/product/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { ShoppingCartService } from '../services/shopping-cart/shopping-cart.service';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-product-details-component',
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule, MenuComponent],
   templateUrl: './product-details-component.component.html',
   styleUrl: './product-details-component.component.css',
 })
