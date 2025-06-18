@@ -32,6 +32,7 @@
         <td>{{ user.userType }}</td>
         <td>
           <button (click)="editUser(user.userId)" class="edit-btn">Modifier</button>
+          <button (click)="deleteUser(user.userId)" class="delete-btn">Supprimer</button>
         </td>
       </tr>
     </tbody>

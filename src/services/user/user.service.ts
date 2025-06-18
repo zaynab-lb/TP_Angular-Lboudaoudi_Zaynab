@@ -74,4 +74,9 @@ getAllUsers(): Observable<any[]> {
 updateUser(userId: number, userData: any): Observable<any> {
   return this.http.put(`/api/users/${userId}`, userData);
 }
+
+deleteUser(userId: number): Observable<any> {
+  return this.http.delete(`/api/users/${userId}`);
+}
+
 }

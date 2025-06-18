@@ -279,6 +279,20 @@ app.put('/api/users/:id', (req, res) => {
 });
 
 
+// Supprimer un utilisateur
+app.delete('/api/users/:id', (req, res) => {
+  const userId = parseInt(req.params.id);
+
+  // Trouver la clé (email) de l'utilisateur
+  const userKey = Object.keys(users).find(key => users[key].userId === userId);
+
+  if (!userKey) {
+    return res.status(404).json({ message: "Utilisateur non trouvé" });
+  }
+
+  delete users[userKey];
+  res.status(200).json({ message: "Utilisateur supprimé avec succès" });
+});
 
 
 const port = 3000;

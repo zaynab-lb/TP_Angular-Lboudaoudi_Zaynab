@@ -49,4 +49,18 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  deleteUser(userId: number): void {
+  if (confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
+    this.userService.deleteUser(userId).subscribe({
+      next: () => {
+        this.loadUsers(); // Recharger la liste après suppression
+      },
+      error: (err) => {
+        this.errorMessage = "Erreur lors de la suppression";
+        console.error(err);
+      }
+    });
+  }
+}
+
 }
