@@ -1,0 +1,35 @@
+<div class="user-list-container">
+    <button (click)="goBack()" class="back-button">← Retour</button>
+  <h2>Liste des Utilisateurs</h2>
+  
+  <button (click)="refresh()" class="refresh-btn">
+    Rafraîchir la liste
+  </button>
+
+  <div *ngIf="isLoading" class="loading">Chargement en cours...</div>
+  
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="!isLoading && !errorMessage" class="user-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Âge</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.userId }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.userType }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -182,7 +182,10 @@ app.post("/api/signup", (req, res) => {
     userType
   };
 
-  res.status(201).send({ message: "Utilisateur créé avec succès." });
+  res.status(201).send({ 
+    message: "Utilisateur créé avec succès.",
+    user: users[email]
+ });
 });
 
 let userCarts = {};
@@ -197,6 +200,15 @@ app.get("/api/cart", (req, res) => {
   const userId = req.query.userId; // Envoyez l'userId en paramètre
   res.send(userCarts[userId] || []);
 });
+
+
+//LEs méthode pour users
+app.get("/api/users", (req, res) => {
+  // Convertir l'objet users en tableau
+  const usersList = Object.values(users);
+  res.status(200).send(usersList);
+});
+
 
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

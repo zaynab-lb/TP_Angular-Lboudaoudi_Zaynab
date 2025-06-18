@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { UserService } from '../services/user/user.service';
+import { UserListComponent } from '../user-list/user-list.component';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,16 @@ import { UserService } from '../services/user/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(public userService: UserService) {}
+  showUserList = false;
+
+  constructor(public userService: UserService,  private router: Router) {}
+
+  toggleUserList(): void {
+    this.showUserList = !this.showUserList;
+  }
+
+  navigateToUserList(): void {
+    this.router.navigate(['/users']);
+  }
 
 }

@@ -66,4 +66,8 @@ export class UserService {
   isMember(): boolean {
     return this.currentUser?.UserType === UserType.Member;
   }
+
+getAllUsers(): Observable<any[]> {
+  return this.http.get<any[]>('/api/users');
+}
 }

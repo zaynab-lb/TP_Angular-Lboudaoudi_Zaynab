@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth/auth.guard';
 import { RoleGuard } from './guards/role/role.guard';
 import { UserType } from '../models/User';
 import { RenderMode } from '@angular/ssr';
+import { UserListComponent } from '../user-list/user-list.component';
 
 export const routes: Routes = 
 [
@@ -41,5 +42,13 @@ export const routes: Routes =
     { path: 'signin', component: SigninComponent, title: 'Connexion' },
   { path: 'signup', component: SignupComponent, title: 'Inscription' },
     {path : '', redirectTo : '/signin', pathMatch : 'full'},
-    {path: 'product-details/:id', component: ProductDetailsComponent, canActivate: [AuthGuard], title: 'Product details'}
+    {path: 'product-details/:id', component: ProductDetailsComponent, canActivate: [AuthGuard], title: 'Product details'},
+
+    {
+  path: 'users',
+  component: UserListComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { role: UserType.Admin },
+  title: 'Liste des utilisateurs'
+}
 ];
