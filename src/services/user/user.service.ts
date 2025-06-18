@@ -56,6 +56,7 @@ export class UserService {
 
   signOut(): void {
     this.currentUser = null;
+    this.router.navigate(['/signin']);
   }
 
    isAdmin(): boolean {

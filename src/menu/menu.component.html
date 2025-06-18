@@ -12,11 +12,6 @@
   </nav>
 
   <div class="user-actions">
-    <ng-container *ngIf="!userService.isAuthenticated()">
-      <a routerLink="/signin" class="btn login-btn">Connexion</a>
-      <a routerLink="/signup" class="btn signup-btn">Inscription</a>
-    </ng-container>
-
     <ng-container *ngIf="userService.isAuthenticated()">
       <div class="welcome">
         Bienvenue, {{userName}}
