@@ -3,6 +3,16 @@ export enum UserType {
     Member = "Member",
     Guest = "Guest"
 }
+export interface EditableUser {
+  userId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: number;
+  userType: string;
+}
+
+
 
 export interface IUserCredentials {
   email: string;

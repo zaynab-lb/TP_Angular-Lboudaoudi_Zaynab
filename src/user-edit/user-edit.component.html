@@ -1,0 +1,25 @@
+<form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+  <label>Prénom</label>
+  <input type="text" name="firstName" [(ngModel)]="user.firstName" required />
+
+  <label>Nom</label>
+  <input type="text" name="lastName" [(ngModel)]="user.lastName" required />
+
+  <label>Email</label>
+  <input type="email" name="email" [(ngModel)]="user.email" required />
+
+  <label>Âge</label>
+  <input type="number" name="age" [(ngModel)]="user.age" required />
+
+  <label>Type</label>
+  <select name="userType" [(ngModel)]="user.userType">
+    <option value="Admin">Admin</option>
+    <option value="Member">Member</option>
+  </select>
+
+  <button type="submit">Enregistrer</button>
+  <button type="button" (click)="cancel()">Annuler</button>
+
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+</form>

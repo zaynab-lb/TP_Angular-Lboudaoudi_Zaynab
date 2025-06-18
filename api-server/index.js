@@ -4,7 +4,12 @@ const cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+//app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+}));
 
 let cart = [];
  const users = {
@@ -208,6 +213,72 @@ app.get("/api/users", (req, res) => {
   const usersList = Object.values(users);
   res.status(200).send(usersList);
 });
+
+// Route pour mettre à jour un utilisateur
+/*app.put('/api/users/:id', (req, res) => {
+  console.log("Mise à jour reçue pour l'ID:", req.params.id); // 👈
+
+  const userId = parseInt(req.params.id);
+  const updatedData = req.body;
+
+  const userKey = Object.keys(users).find(
+    key => users[key].userId === userId
+  );
+
+  if (!userKey) {
+    console.log("Utilisateur non trouvé");
+    return res.status(404).json({ message: 'Utilisateur non trouvé' });
+  }
+
+  users[userKey] = {
+    ...users[userKey],
+    ...updatedData,
+    userId: users[userKey].userId
+  };
+
+  console.log("Utilisateur mis à jour :", users[userKey]);
+
+  res.status(200).json({ message: 'Utilisateur mis à jour', user: users[userKey] });
+});*/
+
+app.put('/api/users/:id', (req, res) => {
+  console.log("Mise à jour reçue pour l'ID:", req.params.id);
+
+  const userId = parseInt(req.params.id);
+  const updatedData = req.body;
+
+  // Trouver l'utilisateur par ID (clé = email)
+  const oldEmailKey = Object.keys(users).find(
+    key => users[key].userId === userId
+  );
+
+  if (!oldEmailKey) {
+    console.log("Utilisateur non trouvé");
+    return res.status(404).json({ message: 'Utilisateur non trouvé' });
+  }
+
+  const oldUser = users[oldEmailKey];
+
+  // Supprimer l'ancienne entrée si l'email a changé
+  const newEmailKey = updatedData.email;
+
+  // Créer une nouvelle entrée avec la nouvelle clé email
+  users[newEmailKey] = {
+    ...oldUser,
+    ...updatedData,
+    userId: oldUser.userId
+  };
+
+  // Supprimer l'ancienne clé uniquement si l'email a changé
+  if (newEmailKey !== oldEmailKey) {
+    delete users[oldEmailKey];
+  }
+
+  console.log("Utilisateur mis à jour :", users[newEmailKey]);
+  res.status(200).json({ message: 'Utilisateur mis à jour', user: users[newEmailKey] });
+});
+
+
 
 
 const port = 3000;

@@ -70,4 +70,8 @@ export class UserService {
 getAllUsers(): Observable<any[]> {
   return this.http.get<any[]>('/api/users');
 }
+
+updateUser(userId: number, userData: any): Observable<any> {
+  return this.http.put(`/api/users/${userId}`, userData);
+}
 }

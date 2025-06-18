@@ -37,6 +37,10 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  editUser(userId: number): void {
+    this.router.navigate(['/edit-user', userId]);
+  }
+
   refresh(): void {
     this.loadUsers();
   }

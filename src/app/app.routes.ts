@@ -10,6 +10,7 @@ import { RoleGuard } from './guards/role/role.guard';
 import { UserType } from '../models/User';
 import { RenderMode } from '@angular/ssr';
 import { UserListComponent } from '../user-list/user-list.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 export const routes: Routes = 
 [
@@ -50,5 +51,12 @@ export const routes: Routes =
   canActivate: [AuthGuard, RoleGuard],
   data: { role: UserType.Admin },
   title: 'Liste des utilisateurs'
+},
+{
+  path: 'edit-user/:id',
+  component: UserEditComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { role: UserType.Admin },
+  title: 'Modifier utilisateur'
 }
 ];
