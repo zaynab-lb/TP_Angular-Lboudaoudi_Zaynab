@@ -181,3 +181,126 @@
     justify-content: center;
   }
 }
+
+.checkout-form {
+  margin-top: 3rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(137, 86, 221, 0.1);
+  color: #4a007e;
+}
+
+.checkout-form h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #6a1b9a;
+  text-align: center;
+}
+
+.checkout-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #5e4b6e;
+}
+
+.form-group input {
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1c4e9;
+  border-radius: 12px;
+  background-color: #fafafa;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #ab47bc;
+  outline: none;
+  background-color: #fff;
+}
+
+.error {
+  color: #d32f2f;
+  background-color: #fdecea;
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+}
+
+/* Séparation visuelle des sections */
+.checkout-form h2 + div {
+  border-top: 1px solid #e0bbec;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Boutons du formulaire */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel-button {
+  padding: 0.6rem 1.4rem;
+  background-color: #d291bc;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #b06ab3;
+}
+
+.submit-button {
+  padding: 0.6rem 1.8rem;
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(137, 86, 221, 0.2);
+}
+
+.submit-button:hover:enabled {
+  background: linear-gradient(to right, #8e44ad, #e598cb);
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}

@@ -1,59 +1,123 @@
 .user-list-container {
-  padding: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(137, 86, 221, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #4a007e;
 }
 
-.refresh-btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 15px;
+.user-list-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #6a1b9a;
+}
+
+.refresh-btn,
+.add-btn {
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
   border: none;
-  border-radius: 4px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  margin: 0.5rem 0.5rem 1rem 0;
+  box-shadow: 0 4px 10px rgba(137, 86, 221, 0.2);
   cursor: pointer;
-  margin-bottom: 20px;
+  transition: transform 0.2s, background-color 0.3s;
 }
 
-.refresh-btn:hover {
-  background-color: #45a049;
+.refresh-btn:hover,
+.add-btn:hover {
+  background: linear-gradient(to right, #8e44ad, #e598cb);
+  transform: translateY(-2px);
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.error {
+  color: #d32f2f;
+  background-color: #fdecea;
+  padding: 1rem;
+  border-radius: 12px;
 }
 
 .user-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
 }
 
-.user-table th, .user-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
+.user-table th,
+.user-table td {
+  padding: 0.8rem 1rem;
   text-align: left;
+  border-bottom: 1px solid #e0bbec;
 }
 
 .user-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.user-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #f3e5f5;
+  color: #6a1b9a;
+  font-weight: 600;
 }
 
 .user-table tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f9f0ff;
 }
 
-.loading, .error {
-  padding: 15px;
-  margin: 15px 0;
-  border-radius: 4px;
+.edit-btn,
+.delete-btn {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.loading {
-  background-color: #e6f7ff;
-  color: #0066cc;
+.edit-btn {
+  background-color: #9575cd;
+  color: white;
+  margin-right: 0.5rem;
 }
 
-.error {
-  background-color: #fff2f0;
-  color: #ff4d4f;
+.edit-btn:hover {
+  background-color: #7e57c2;
+}
+
+.delete-btn {
+  background-color: #ef9a9a;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+@media (max-width: 768px) {
+  .user-table {
+    font-size: 0.85rem;
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 0.6rem;
+  }
+
+  .refresh-btn,
+  .add-btn {
+    width: 100%;
+    margin-bottom: 0.8rem;
+  }
 }
