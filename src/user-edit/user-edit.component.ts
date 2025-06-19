@@ -7,11 +7,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { EditableUser, User } from '../models/User';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-user-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MenuComponent],
   templateUrl: './user-edit.component.html',
   styleUrl: './user-edit.component.css'
 })

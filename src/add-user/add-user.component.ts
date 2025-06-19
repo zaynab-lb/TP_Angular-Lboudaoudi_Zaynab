@@ -4,11 +4,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { UserType } from '../models/User';
 import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-add-user',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MenuComponent],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.css'
 })

@@ -42,6 +42,6 @@
       <p>Numéro: **** **** **** {{order.paymentInfo.cardNumber.slice(-4)}}</p>
     </div>
     
-    <a routerLink="/catalog" class="back-to-shop">Retour à la boutique</a>
+    <a routerLink="/catalog" *ngIf="isAuthenticated" class="back-to-shop">Retour à la boutique</a>
   </div>
 </div>

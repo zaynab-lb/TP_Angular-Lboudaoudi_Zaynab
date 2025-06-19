@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../models/order';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { OrderService } from '../services/order/order.service';
 import { MenuComponent } from '../menu/menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-order-confirmation',
-  imports: [MenuComponent, ReactiveFormsModule, CommonModule],
+  imports: [MenuComponent, ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './order-confirmation.component.html',
   styleUrl: './order-confirmation.component.css'
 })
@@ -18,12 +18,15 @@ export class OrderConfirmationComponent implements OnInit{
   order: Order | null = null;
   isLoading = true;
   error: string | null = null;
+  isAuthenticated = false;
 
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private userService: UserService
-  ) {}
+    public userService: UserService
+  ){
+    this.isAuthenticated = this.userService.isAuthenticated(); // Initialisation
+  }
 
   ngOnInit(): void {
     const orderId = this.route.snapshot.paramMap.get('id');

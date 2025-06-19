@@ -20,6 +20,7 @@ export class MenuComponent {
   userName: string = '';
   cartItemCount: number = 0;
   private cartSubscription?: Subscription;
+   userRole: string = '';
 
   constructor(public userService: UserService, private cartService: ShoppingCartService) {
     // Example: subscribe to cart changes if using observables
@@ -49,6 +50,7 @@ export class MenuComponent {
     if (this.isAuthenticated) {
       const user = this.userService.getCurrentUser();
       this.userName = user ? user.fullName() : '';
+      this.userRole = user ? user.UserType : '';
     }
   }
 
@@ -57,6 +59,5 @@ export class MenuComponent {
     this.isAuthenticated = false;
     this.userName = '';
   }
-  
 
 }

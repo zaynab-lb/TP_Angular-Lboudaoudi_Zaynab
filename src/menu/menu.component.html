@@ -6,7 +6,7 @@
   </div>
 
   <nav class="nav-links">
-    <a routerLink="/catalog" routerLinkActive="active" class="nav-item">
+    <a *ngIf="userRole === 'Member'" routerLink="/catalog" routerLinkActive="active" class="nav-item">
       <span>Catalogue</span>
     </a>
   </nav>
@@ -17,12 +17,22 @@
         Bienvenue, {{userName}}
       </div>
 
-      <a routerLink="/cart" class="btn cart-btn">
+      <a routerLink="/cart" class="btn cart-btn" *ngIf="userRole === 'Member'">
         <span class="badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
         Panier
       </a>
 
-      <li><a routerLink="/my-orders" *ngIf="userService.isAuthenticated()">Mes Commandes</a></li>
+      <a routerLink="/home" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
+       Tableau de bord
+      </a>
+
+      <a routerLink="/users" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
+       Liste des utilisateurs
+      </a>
+
+      <a routerLink="/my-orders" class="btn cart-btn" *ngIf="userRole === 'Member'" routerLinkActive="active">
+        Mes Commandes
+      </a>
 
       <button (click)="userService.signOut()" class="btn logout-btn">Déconnexion</button>
     </ng-container>
