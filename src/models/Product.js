@@ -14,42 +14,66 @@ var Product = /** @class */ (function () {
     Product.prototype.printProduct = function () {
         return "Product ID: ".concat(this.productId, ", Title: ").concat(this.productTitle, ", Price: ").concat(this.productPrice);
     };
-    Product.prototype.getProductId = function () {
-        return this.productId;
-    };
-    Product.prototype.setProductId = function (productId) {
-        this.productId = productId;
-    };
-    Product.prototype.getProductTitle = function () {
-        return this.productTitle;
-    };
-    Product.prototype.setProductTitle = function (productTitle) {
-        this.productTitle = productTitle;
-    };
-    Product.prototype.getProductPrice = function () {
-        return this.productPrice;
-    };
-    Product.prototype.setProductPrice = function (productPrice) {
-        this.productPrice = productPrice;
-    };
-    Product.prototype.getProductQuantity = function () {
-        return this.productQuantity;
-    };
-    Product.prototype.setProductQuantity = function (productQuantity) {
-        this.productQuantity = productQuantity;
-    };
-    Product.prototype.getProductCategory = function () {
-        return this.productCategory;
-    };
-    Product.prototype.setProductCategory = function (productCategory) {
-        this.productCategory = productCategory;
-    };
-    Product.prototype.getProductImage = function () {
-        return this.productImage;
-    };
-    Product.prototype.setProductImage = function (productImage) {
-        this.productImage = productImage;
-    };
+    Object.defineProperty(Product.prototype, "ProductId", {
+        get: function () {
+            return this.productId;
+        },
+        set: function (productId) {
+            this.productId = productId;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Product.prototype, "ProductTitle", {
+        get: function () {
+            return this.productTitle;
+        },
+        set: function (productTitle) {
+            this.productTitle = productTitle;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Product.prototype, "ProductPrice", {
+        get: function () {
+            return this.productPrice;
+        },
+        set: function (productPrice) {
+            this.productPrice = productPrice;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Product.prototype, "ProductQuantity", {
+        get: function () {
+            return this.productQuantity;
+        },
+        set: function (productQuantity) {
+            this.productQuantity = productQuantity;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Product.prototype, "ProductCategory", {
+        get: function () {
+            return this.productCategory;
+        },
+        set: function (productCategory) {
+            this.productCategory = productCategory;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Product.prototype, "ProductImage", {
+        get: function () {
+            return this.productImage;
+        },
+        set: function (productImage) {
+            this.productImage = productImage;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Product;
 }());
 exports.Product = Product;

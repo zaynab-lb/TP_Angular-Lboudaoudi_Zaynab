@@ -8,11 +8,11 @@ var ShoppingCartItem = /** @class */ (function () {
         this.quantity = quantity;
     }
     ShoppingCartItem.prototype.addProduct = function (item) {
-        if (this.itemProduct.getProductId() === item.getItemProduct().getProductId())
+        if (this.itemProduct.ProductId === item.getItemProduct().ProductId)
             this.quantity += item.getQuantity();
     };
     ShoppingCartItem.prototype.subtractProduct = function (item) {
-        if (this.itemProduct.getProductId() === item.getItemProduct().getProductId())
+        if (this.itemProduct.ProductId === item.getItemProduct().ProductId)
             this.quantity -= item.getQuantity();
     };
     ShoppingCartItem.prototype.displayProductItem = function () {

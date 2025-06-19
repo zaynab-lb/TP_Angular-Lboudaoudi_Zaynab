@@ -33,9 +33,110 @@
     
     <div class="cart-summary">
       <div class="total">Total: {{ cartService.getTotal() | currency:'DH ':'symbol':'1.2-2' }}</div>
-      <button class="checkout-button">Passer la commande</button>
+      <button (click)="proceedToCheckout()" class="checkout-button">Passer la commande</button>
     </div>
   </div>
-  
+  <!-- Formulaire de commande -->
+  <div *ngIf="isCheckout" class="checkout-form">
+    <h2>Informations de livraison</h2>
+    <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()">
+      <div formGroupName="shippingInfo">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" formControlName="firstName">
+          <div *ngIf="checkoutForm.get('shippingInfo.firstName')?.invalid && checkoutForm.get('shippingInfo.firstName')?.touched" class="error">
+            Prénom requis
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" formControlName="lastName">
+          <div *ngIf="checkoutForm.get('shippingInfo.lastName')?.invalid && checkoutForm.get('shippingInfo.lastName')?.touched" class="error">
+            Nom requis
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Adresse</label>
+          <input type="text" formControlName="address">
+          <div *ngIf="checkoutForm.get('shippingInfo.address')?.invalid && checkoutForm.get('shippingInfo.address')?.touched" class="error">
+            Adresse requise
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Ville</label>
+          <input type="text" formControlName="city">
+          <div *ngIf="checkoutForm.get('shippingInfo.city')?.invalid && checkoutForm.get('shippingInfo.city')?.touched" class="error">
+            Ville requise
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Code postal</label>
+          <input type="text" formControlName="postalCode">
+          <div *ngIf="checkoutForm.get('shippingInfo.postalCode')?.invalid && checkoutForm.get('shippingInfo.postalCode')?.touched" class="error">
+            Code postal invalide (5 chiffres requis)
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="text" formControlName="phone">
+          <div *ngIf="checkoutForm.get('shippingInfo.phone')?.invalid && checkoutForm.get('shippingInfo.phone')?.touched" class="error">
+            Téléphone invalide (ex: 0612345678)
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" formControlName="email">
+          <div *ngIf="checkoutForm.get('shippingInfo.email')?.invalid && checkoutForm.get('shippingInfo.email')?.touched" class="error">
+            Email invalide
+          </div>
+        </div>
+      </div>
+      <h2>Informations de paiement</h2>
+      <div formGroupName="paymentInfo">
+        <div class="form-group">
+          <label>Numéro de carte</label>
+          <input type="text" formControlName="cardNumber" placeholder="1234123412341234">
+          <div *ngIf="checkoutForm.get('paymentInfo.cardNumber')?.invalid && checkoutForm.get('paymentInfo.cardNumber')?.touched" class="error">
+            16 chiffres requis
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Nom sur la carte</label>
+          <input type="text" formControlName="cardHolder">
+          <div *ngIf="checkoutForm.get('paymentInfo.cardHolder')?.invalid && checkoutForm.get('paymentInfo.cardHolder')?.touched" class="error">
+            Nom requis
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Date d'expiration</label>
+          <input type="text" formControlName="expiryDate" placeholder="MM/AA">
+          <div *ngIf="checkoutForm.get('paymentInfo.expiryDate')?.invalid && checkoutForm.get('paymentInfo.expiryDate')?.touched" class="error">
+            Format MM/AA requis
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>CVV</label>
+          <input type="text" formControlName="cvv" placeholder="123">
+          <div *ngIf="checkoutForm.get('paymentInfo.cvv')?.invalid && checkoutForm.get('paymentInfo.cvv')?.touched" class="error">
+            3 chiffres requis
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" (click)="cancelCheckout()" class="cancel-button">Annuler</button>
+        <button type="submit" [disabled]="!checkoutForm.valid" class="submit-button">Confirmer la commande</button>
+      </div>
+    </form>
+  </div>
   <a routerLink="/catalog" class="continue-shopping">← Continuer vos achats</a>
 </div>

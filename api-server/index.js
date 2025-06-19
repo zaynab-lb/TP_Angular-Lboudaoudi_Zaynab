@@ -12,6 +12,7 @@ app.use(cors({
 }));
 
 let cart = [];
+let orders = [];
  const users = {
   "zaynab@gmail.com": {
     userId: 1,
@@ -41,6 +42,51 @@ let cart = [];
     userType: "Member"
   }
 };
+
+const products = [
+  {
+    productId: 1,
+    productTitle: "Clavier",
+    productPrice: 150,
+    productQuantity: 15,
+    productCategory: "Clavier",
+    productImage: 'assets/images/clavier.jpeg'
+  },
+  {
+    productId: 2,
+    productTitle: "Souris",
+    productPrice: 50,
+    productQuantity: 20,
+    productCategory: "Souris",
+    productImage: 'assets/images/souris.jpeg'
+  },
+  {
+    productId: 3,
+    productTitle: "Ecran",
+    productPrice: 1000,
+    productQuantity: 10,
+    productCategory: "Ecran",
+    productImage: 'assets/images/ecran.jpeg'
+  },
+  {
+    productId: 4,
+    productTitle: "PC Portable",
+    productPrice: 5000,
+    productQuantity: 8,
+    productCategory: "Ordinateur",
+    productImage: 'assets/images/pc.jpeg'
+  },
+  {
+    productId: 5,
+    productTitle: "Tapis",
+    productPrice: 200,
+    productQuantity: 25,
+    productCategory: "Accessoires",
+    productImage: 'assets/images/tapis.jpeg'
+  },
+];
+
+// Route pour la connexion
 app.post("/api/signin", (req, res) => {
   const user = users[req.body.email];
   if (user && user.password === req.body.password) {
@@ -55,106 +101,21 @@ app.post("/api/signin", (req, res) => {
     res.status(401).json({ error: "Identifiants invalides." });
   }
 });
+
+
 app.get("/api/products", (req, res) => {
-  let products = [
-    {
-      productId: 1,
-      productTitle: "Clavier",
-      productPrice: 150,
-      productQuantity: 15,
-      productCategory: "Clavier",
-      productImage: 'assets/images/clavier.jpeg'
-    },
-    {
-      productId: 2,
-      productTitle: "Souris",
-      productPrice: 50,
-      productQuantity: 20,
-      productCategory: "Souris",
-      productImage: 'assets/images/souris.jpeg'
-    },
-    {
-      productId: 3,
-      productTitle: "Ecran",
-      productPrice: 1000,
-      productQuantity: 10,
-      productCategory: "Ecran",
-      productImage: 'assets/images/ecran.jpeg'
-    },
-    {
-      productId: 4,
-      productTitle: "PC Portable",
-      productPrice: 5000,
-      productQuantity: 8,
-      productCategory: "Ordinateur",
-      productImage: 'assets/images/pc.jpeg'
-    },
-    {
-      productId: 5,
-      productTitle: "Tapis",
-      productPrice: 200,
-      productQuantity: 25,
-      productCategory: "Accessoires",
-      productImage: 'assets/images/tapis.jpeg'
-    },
-  ];
   res.send(products);
 });
-app.get("/api/products/:id", (req, res) => {
-  const products = [
-    {
-      productId: 1,
-      productTitle: "Clavier",
-      productPrice: 150,
-      productQuantity: 15,
-      productCategory: "Clavier",
-      productImage: 'assets/images/clavier.jpeg'
-    },
-    {
-      productId: 2,
-      productTitle: "Souris",
-      productPrice: 50,
-      productQuantity: 20,
-      productCategory: "Souris",
-      productImage: 'assets/images/souris.jpeg'
-    },
-    {
-      productId: 3,
-      productTitle: "Ecran",
-      productPrice: 1000,
-      productQuantity: 10,
-      productCategory: "Ecran",
-      productImage: 'assets/images/ecran.jpeg'
-    },
-    {
-      productId: 4,
-      productTitle: "PC Portable",
-      productPrice: 5000,
-      productQuantity: 8,
-      productCategory: "Ordinateur",
-      productImage: 'assets/images/pc.jpeg'
-    },
-    {
-      productId: 5,
-      productTitle: "Tapis",
-      productPrice: 200,
-      productQuantity: 25,
-      productCategory: "Accessoires",
-      productImage: 'assets/images/tapis.jpeg'
-    },
-  ];
 
- 
+app.get("/api/products/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const product = products.find(p => p.productId === id);
-
   if (product) {
     res.send(product);
-    console.log("Produit trouvé" + product.productTitle);
+    console.log("Produit trouvé:", product.productTitle);
   } else {
     res.status(404).send({ message: "Produit non trouvé" });
-        console.log("Produit non trouvé");
-
+    console.log("Produit non trouvé");
   }
 });
 
@@ -291,6 +252,126 @@ app.delete('/api/users/:id', (req, res) => {
   res.status(200).json({ message: "Utilisateur supprimé avec succès" });
 });
 
+// Modifiez la route /api/orders pour gérer la mise à jour des stocks
+app.post("/api/orders", (req, res) => {
+  const { userId, items, shippingInfo, paymentInfo, total } = req.body;
+  
+  // Vérifier que les quantités en stock sont suffisantes
+  for (const item of items) {
+    const product = products.find(p => p.productId === item.productId);
+    if (!product) {
+      return res.status(404).json({ error: `Produit ${item.productId} non trouvé` });
+    }
+    if (product.productQuantity < item.quantity) {
+      return res.status(400).json({ 
+        error: `Stock insuffisant pour ${product.productTitle}. Stock disponible: ${product.productQuantity}` 
+      });
+    }
+  }
+  
+  // Mettre à jour les stocks
+  for (const item of items) {
+    const product = products.find(p => p.productId === item.productId);
+    product.productQuantity -= item.quantity;
+  }
+  
+  const newOrder = {
+    orderId: orders.length + 1,
+    userId,
+    items,
+    shippingInfo,
+    paymentInfo,
+    total,
+    orderDate: new Date().toISOString(),
+    status: "En traitement"
+  };
+  
+  orders.push(newOrder);
+  
+  // Vider le panier de l'utilisateur
+  if (userCarts[userId]) {
+    userCarts[userId] = [];
+  }
+  
+  res.status(201).json(newOrder);
+});
+
+// Modifiez vos routes /api/products pour utiliser le tableau products
+app.get("/api/products", (req, res) => {
+  res.send(products); // utilise la variable globale
+});
+
+app.get("/api/products/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const product = products.find(p => p.productId === id);
+
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: "Produit non trouvé" });
+  }
+});
+
+
+app.get("/api/products/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const product = products.find(p => p.productId === id);
+
+  if (product) {
+    res.send(product);
+    console.log("Produit trouvé" + product.productTitle);
+  } else {
+    res.status(404).send({ message: "Produit non trouvé" });
+    console.log("Produit non trouvé");
+  }
+});
+
+// === Commandes ===
+app.post("/api/orders", (req, res) => {
+  const { userId, items, shippingInfo, paymentInfo, total } = req.body;
+
+  for (const item of items) {
+    const product = products.find(p => p.productId === item.productId);
+    if (!product) {
+      return res.status(404).json({ error: `Produit ${item.productId} non trouvé` });
+    }
+    if (product.productQuantity < item.quantity) {
+      return res.status(400).json({ 
+        error: `Stock insuffisant pour ${product.productTitle}. Stock disponible: ${product.productQuantity}` 
+      });
+    }
+  }
+
+  for (const item of items) {
+    const product = products.find(p => p.productId === item.productId);
+    product.productQuantity -= item.quantity;
+  }
+
+  const newOrder = {
+    orderId: orders.length + 1,
+    userId,
+    items,
+    shippingInfo,
+    paymentInfo,
+    total,
+    orderDate: new Date().toISOString(),
+    status: "En traitement"
+  };
+
+  orders.push(newOrder);
+
+  if (userCarts[userId]) {
+    userCarts[userId] = [];
+  }
+
+  res.status(201).json(newOrder);
+});
+
+// Route pour récupérer les commandes d'un utilisateur
+app.get("/api/orders/:userId", (req, res) => {
+  const userOrders = orders.filter(order => order.userId === parseInt(req.params.userId));
+  res.status(200).json(userOrders);
+});
 
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

@@ -14,5 +14,9 @@ export const serverRoutes: ServerRoute[] = [
   {
     path: 'edit-user/:id',
     renderMode: RenderMode.Server,
+  },
+  {
+    path: 'order-confirmation/:id',
+    renderMode: RenderMode.Server,
   }
 ];

@@ -39,4 +39,10 @@ export class ProductService
     ))
   );
 }
+
+getProductStock(productId: number): Observable<number> {
+  return this.http.get<any>(`/api/products/${productId}`).pipe(
+    map(product => product.productQuantity)
+  );
+}
 }
