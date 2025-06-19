@@ -18,9 +18,7 @@ export class UserService {
   }
 
   signUp(userData: IRegisterData): Observable<any> {
-  if (userData.userType !== UserType.Member) {
-    throw new Error("Seuls les utilisateurs de type Member peuvent s'inscrire");
-  }
+  // Suppression de la restriction ici
   return this.http.post('/api/signup', userData); 
 }
 
@@ -77,6 +75,14 @@ updateUser(userId: number, userData: any): Observable<any> {
 
 deleteUser(userId: number): Observable<any> {
   return this.http.delete(`/api/users/${userId}`);
+}
+
+addUser(userData: any): Observable<any> {
+  const body = {
+    ...userData,
+    isAdminRequest: true  // autorise la création d’un admin côté backend
+  };
+  return this.http.post('/api/signup', body);
 }
 
 }

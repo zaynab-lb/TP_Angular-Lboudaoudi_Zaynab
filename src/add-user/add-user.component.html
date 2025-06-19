@@ -1,0 +1,80 @@
+<div class="add-user-container">
+  <h2>Ajouter un Utilisateur</h2>
+
+  <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm)">
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        [(ngModel)]="user.firstName"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Nom</label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        [(ngModel)]="user.lastName"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="user.email"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="user.password"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="age">Âge</label>
+      <input
+        type="number"
+        id="age"
+        name="age"
+        [(ngModel)]="user.age"
+        required
+        min="1"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="userType">Type d'utilisateur</label>
+      <select
+        id="userType"
+        name="userType"
+        [(ngModel)]="user.userType"
+        required
+      >
+        <option [value]="'Admin'">Admin</option>
+        <option [value]="'Member'">Member</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="addForm.invalid">Ajouter</button>
+    <button type="button" (click)="cancel()">Annuler</button>
+
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</div>

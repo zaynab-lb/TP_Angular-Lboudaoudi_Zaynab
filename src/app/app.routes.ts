@@ -58,5 +58,14 @@ export const routes: Routes =
   canActivate: [AuthGuard, RoleGuard],
   data: { role: UserType.Admin },
   title: 'Modifier utilisateur'
+},
+
+{
+  path: 'add-user',
+  loadComponent: () => import('../add-user/add-user.component').then(c => c.AddUserComponent),
+  canActivate: [AuthGuard, RoleGuard],
+  data: { role: UserType.Admin },
+  title: 'Ajouter utilisateur'
 }
+
 ];

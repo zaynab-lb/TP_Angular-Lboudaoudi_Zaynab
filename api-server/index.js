@@ -52,7 +52,7 @@ app.post("/api/signin", (req, res) => {
       userType: user.userType
     });
   } else {
-    res.status(401).send("Invalid user credentials.");
+    res.status(401).json({ error: "Identifiants invalides." });
   }
 });
 app.get("/api/products", (req, res) => {
@@ -166,14 +166,10 @@ app.post("/api/cart", (req, res) => {
 app.get("/api/cart", (req, res) => res.send(cart));
 
 app.post("/api/signup", (req, res) => {
-  const { email, password, firstName, lastName, age, userType } = req.body;
-
-  if (userType !== "Member") {
-    return res.status(400).send("Seuls les utilisateurs de type Member peuvent s'inscrire.");
-  }
+  const { email, password, firstName, lastName, age, userType, isAdminRequest = false } = req.body;
 
   if (users[email]) {
-    return res.status(409).send("Utilisateur déjà existant.");
+    return res.status(409).json({ error: "Utilisateur déjà existant." });
   }
 
   const userId = Object.keys(users).length + 1;
@@ -190,8 +186,9 @@ app.post("/api/signup", (req, res) => {
   res.status(201).send({ 
     message: "Utilisateur créé avec succès.",
     user: users[email]
- });
+  });
 });
+
 
 let userCarts = {};
 
