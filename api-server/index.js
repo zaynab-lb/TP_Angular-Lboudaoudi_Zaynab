@@ -372,6 +372,16 @@ app.get("/api/orders/:userId", (req, res) => {
   const userOrders = orders.filter(order => order.userId === parseInt(req.params.userId));
   res.status(200).json(userOrders);
 });
+app.get("/api/orders/details/:orderId", (req, res) => {
+  const orderId = parseInt(req.params.orderId);
+  const order = orders.find(o => o.orderId === orderId);
+
+  if (order) {
+    res.status(200).json(order);
+  } else {
+    res.status(404).json({ message: "Commande non trouvée" });
+  }
+});
 
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

@@ -5,6 +5,7 @@ import { OrderService } from '../services/order/order.service';
 import { MenuComponent } from '../menu/menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../services/user/user.service';
 
 
 @Component({
@@ -15,39 +16,39 @@ import { CommonModule } from '@angular/common';
 })
 export class OrderConfirmationComponent implements OnInit{
   order: Order | null = null;
+  isLoading = true;
+  error: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     const orderId = this.route.snapshot.paramMap.get('id');
-    if (orderId) {
-      // Dans une vraie application, vous feriez une requête pour récupérer les détails de la commande
-      this.order = {
-        orderId: +orderId,
-        userId: 1, // À remplacer par l'utilisateur actuel
-        items: [],
-        shippingInfo: {
-          firstName: 'Prénom',
-          lastName: 'Nom',
-          address: 'Adresse',
-          city: 'Ville',
-          postalCode: '00000',
-          phone: '0600000000',
-          email: 'email@example.com'
+    const userId = this.userService.getCurrentUser()?.UserId;
+    
+    if (orderId && userId) {
+      this.orderService.getUserOrders(userId).subscribe({
+        next: (orders) => {
+          const foundOrder = orders.find(o => o.orderId === +orderId);
+          if (foundOrder) {
+            this.order = foundOrder;
+          } else {
+            this.error = 'Commande non trouvée';
+          }
+          this.isLoading = false;
         },
-        paymentInfo: {
-          cardNumber: '************1234',
-          cardHolder: 'Nom sur carte',
-          expiryDate: 'MM/AA',
-          cvv: '***'
-        },
-        total: 0,
-        orderDate: new Date().toISOString(),
-        status: 'En traitement'
-      };
+        error: (err) => {
+          console.error('Erreur lors du chargement de la commande:', err);
+          this.error = 'Erreur lors du chargement de la commande';
+          this.isLoading = false;
+        }
+      });
+    } else {
+      this.error = 'ID de commande ou utilisateur manquant';
+      this.isLoading = false;
     }
   }
 }

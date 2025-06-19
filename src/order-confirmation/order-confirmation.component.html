@@ -1,6 +1,15 @@
 <app-menu></app-menu>
 <div class="confirmation-container">
-  <div *ngIf="order" class="confirmation-card">
+  <div *ngIf="isLoading" class="loading">
+    Chargement de votre commande...
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{error}}
+    <a routerLink="/catalog" class="back-to-shop">Retour à la boutique</a>
+  </div>
+
+  <div *ngIf="order && !isLoading" class="confirmation-card">
     <h2>Merci pour votre commande !</h2>
     <p>Votre commande n°{{order.orderId}} a bien été enregistrée.</p>
     
@@ -9,6 +18,13 @@
       <p><strong>Date :</strong> {{order.orderDate | date:'medium'}}</p>
       <p><strong>Statut :</strong> {{order.status}}</p>
       <p><strong>Total :</strong> {{order.total | currency:'DH ':'symbol':'1.2-2'}}</p>
+      
+      <h4>Produits commandés :</h4>
+      <ul class="product-list">
+        <li *ngFor="let item of order.items">
+          {{item.quantity}} × {{item.productTitle}} - {{item.price | currency:'DH ':'symbol':'1.2-2'}}
+        </li>
+      </ul>
     </div>
     
     <div class="shipping-info">
@@ -18,6 +34,12 @@
       <p>{{order.shippingInfo.postalCode}} {{order.shippingInfo.city}}</p>
       <p>Tél: {{order.shippingInfo.phone}}</p>
       <p>Email: {{order.shippingInfo.email}}</p>
+    </div>
+    
+    <div class="payment-info" *ngIf="order.paymentInfo">
+      <h3>Informations de paiement</h3>
+      <p>Méthode: Carte de crédit</p>
+      <p>Numéro: **** **** **** {{order.paymentInfo.cardNumber.slice(-4)}}</p>
     </div>
     
     <a routerLink="/catalog" class="back-to-shop">Retour à la boutique</a>

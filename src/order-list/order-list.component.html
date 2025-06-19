@@ -1,0 +1,36 @@
+<app-menu></app-menu>
+<div class="order-list-container">
+  <h2>Mes Commandes</h2>
+  
+  <div *ngIf="isLoading" class="loading">
+    Chargement des commandes...
+  </div>
+
+  <div *ngIf="!isLoading && orders.length === 0" class="no-orders">
+    Vous n'avez pas encore passé de commande.
+  </div>
+
+  <div *ngIf="!isLoading && orders.length > 0">
+    <div class="order-card" *ngFor="let order of orders">
+      <div class="order-header">
+        <h3>Commande #{{order.orderId}}</h3>
+        <span class="order-status">{{order.status}}</span>
+        <span class="order-date">{{order.orderDate | date:'medium'}}</span>
+        <span class="order-total">{{order.total | currency:'DH ':'symbol':'1.2-2'}}</span>
+      </div>
+      
+      <div class="order-details">
+        <h4>Produits commandés:</h4>
+        <ul>
+          <li *ngFor="let item of order.items">
+            {{item.quantity}} x {{item.productTitle}} - {{item.price | currency:'DH ':'symbol':'1.2-2'}}
+          </li>
+        </ul>
+      </div>
+      
+      <div class="order-actions">
+        <a [routerLink]="['/order-confirmation', order.orderId]" class="view-details">Voir les détails</a>
+      </div>
+    </div>
+  </div>
+</div>

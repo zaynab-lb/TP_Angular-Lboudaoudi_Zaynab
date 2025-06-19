@@ -4,6 +4,25 @@ import { UserService } from '../user/user.service';
 import { ShoppingCartItem } from '../../models/ShoppingCartItem';
 import { Order, PaymentInfo, ShippingInfo } from '../../models/order';
 import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs';
+
+export interface OrderItem {
+  productId: number;
+  productTitle: string;
+  quantity: number;
+  price: number;
+}
+
+export interface ApiOrder {
+  orderId: number;
+  userId: number;
+  items: OrderItem[];
+  shippingInfo: ShippingInfo;
+  paymentInfo: PaymentInfo;
+  total: number;
+  orderDate: string;
+  status: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +52,23 @@ export class OrderService {
 }
 
   getUserOrders(userId: number): Observable<Order[]> {
-    return this.http.get<Order[]>(`/api/orders/${userId}`);
+    return this.http.get<ApiOrder[]>(`/api/orders/${userId}`).pipe(
+      map(apiOrders => apiOrders.map(apiOrder => this.mapApiOrderToOrder(apiOrder)))
+    );
   }
+
+  private mapApiOrderToOrder(apiOrder: ApiOrder): Order {
+    return {
+      orderId: apiOrder.orderId,
+      userId: apiOrder.userId,
+      items: apiOrder.items,
+      shippingInfo: apiOrder.shippingInfo,
+      paymentInfo: apiOrder.paymentInfo,
+      total: apiOrder.total,
+      orderDate: apiOrder.orderDate,
+      status: apiOrder.status
+    };
+  }
+
+  
 }

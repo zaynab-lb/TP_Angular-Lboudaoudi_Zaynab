@@ -22,6 +22,8 @@
         Panier
       </a>
 
+      <li><a routerLink="/my-orders" *ngIf="userService.isAuthenticated()">Mes Commandes</a></li>
+
       <button (click)="userService.signOut()" class="btn logout-btn">Déconnexion</button>
     </ng-container>
   </div>

@@ -1,0 +1,30 @@
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1em;
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.product-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-info {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}

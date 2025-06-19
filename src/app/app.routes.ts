@@ -12,6 +12,7 @@ import { RenderMode } from '@angular/ssr';
 import { UserListComponent } from '../user-list/user-list.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
 import { OrderConfirmationComponent } from '../order-confirmation/order-confirmation.component';
+import { OrderListComponent } from '../order-list/order-list.component';
 
 export const routes: Routes = 
 [
@@ -74,6 +75,13 @@ export const routes: Routes =
   component: OrderConfirmationComponent,
   canActivate: [AuthGuard],
   title: 'Confirmation de commande'
+},
+
+{
+  path: 'my-orders',
+  component: OrderListComponent,
+  canActivate: [AuthGuard],
+  title: 'Mes Commandes'
 }
 
 ];

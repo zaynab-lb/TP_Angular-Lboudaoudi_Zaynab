@@ -20,10 +20,17 @@ export interface PaymentInfo {
 export interface Order {
   orderId: number;
   userId: number;
-  items: ShoppingCartItem[];
+  items: OrderItem[];
   shippingInfo: ShippingInfo;
   paymentInfo: PaymentInfo;
   total: number;
   orderDate: string;
   status: string;
+}
+
+export interface OrderItem {
+  productId: number;
+  productTitle: string;
+  quantity: number;
+  price: number;
 }
