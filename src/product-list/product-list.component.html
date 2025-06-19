@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+
+<div class="product-list-container">
+  <h2>Liste des Produits</h2>
+
+  <div *ngIf="isLoading">Chargement des produits...</div>
+
+  <div *ngIf="!isLoading && products.length === 0">Aucun produit trouvé.</div>
+
+  <table *ngIf="products.length > 0">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Catégorie</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.ProductTitle }}</td>
+        <td>{{ product.ProductPrice }} MAD</td>
+        <td>{{ product.ProductQuantity }}</td>
+        <td>{{ product.ProductCategory }}</td>
+        <td>
+          <img [src]="product.ProductImage" alt="image" width="60" height="60" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

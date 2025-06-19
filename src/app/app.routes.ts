@@ -13,6 +13,7 @@ import { UserListComponent } from '../user-list/user-list.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
 import { OrderConfirmationComponent } from '../order-confirmation/order-confirmation.component';
 import { OrderListComponent } from '../order-list/order-list.component';
+import { ProductListComponent } from '../product-list/product-list.component';
 
 export const routes: Routes = 
 [
@@ -82,6 +83,14 @@ export const routes: Routes =
   component: OrderListComponent,
   canActivate: [AuthGuard],
   title: 'Mes Commandes'
+},
+
+{
+  path: 'products',
+  component: ProductListComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { role: UserType.Admin },
+  title: 'Liste des produits'
 }
 
 ];

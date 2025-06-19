@@ -9,14 +9,12 @@
   font-family: 'Segoe UI', sans-serif;
   color: #4a007e;
 }
-
 .cart-container h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   text-align: center;
   color: #5e35b1;
 }
-
 .empty-cart {
   text-align: center;
   font-size: 1.2rem;
@@ -25,13 +23,11 @@
   border-radius: 16px;
   color: #7b1fa2;
 }
-
 .cart-actions {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 1rem;
 }
-
 .clear-cart-button {
   background-color: #d291bc;
   border: none;
@@ -42,17 +38,14 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .clear-cart-button:hover {
   background-color: #b06ab3;
 }
-
 .cart-items {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-
 .cart-item {
   display: flex;
   align-items: center;
@@ -62,7 +55,6 @@
   box-shadow: 0 2px 10px rgba(137, 86, 221, 0.1);
   gap: 1.5rem;
 }
-
 .cart-item-image {
   width: 100px;
   height: 100px;
@@ -71,29 +63,24 @@
   background-color: #e0bbec;
   padding: 0.3rem;
 }
-
 .cart-item-details {
   flex-grow: 1;
 }
-
 .cart-item-details h3 {
   font-size: 1.1rem;
   margin: 0 0 0.5rem;
   color: #6a1b9a;
 }
-
 .price {
   font-weight: 600;
   color: #9c27b0;
   margin-bottom: 0.6rem;
 }
-
 .quantity-controls {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
-
 .quantity-controls button {
   background-color: #a18cd1;
   color: white;
@@ -105,11 +92,9 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .quantity-controls button:hover {
   background-color: #8e44ad;
 }
-
 .item-total {
   font-size: 1.1rem;
   font-weight: bold;
@@ -117,19 +102,16 @@
   min-width: 100px;
   text-align: right;
 }
-
 .cart-summary {
   margin-top: 2rem;
   text-align: right;
 }
-
 .total {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #4a007e;
 }
-
 .checkout-button {
   background: linear-gradient(to right, #a18cd1, #fbc2eb);
   border: none;
@@ -142,12 +124,10 @@
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 10px rgba(137, 86, 221, 0.2);
 }
-
 .checkout-button:hover {
   background: linear-gradient(to right, #8e44ad, #e598cb);
   transform: translateY(-2px);
 }
-
 .continue-shopping {
   display: inline-block;
   margin-top: 2rem;
@@ -156,32 +136,25 @@
   font-weight: 500;
   transition: color 0.3s;
 }
-
 .continue-shopping:hover {
   color: #4a148c;
 }
-
-
 @media (max-width: 768px) {
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .item-total {
     align-self: flex-end;
     text-align: left;
   }
-
   .cart-summary {
     text-align: center;
   }
-
   .cart-actions {
     justify-content: center;
   }
 }
-
 .checkout-form {
   margin-top: 3rem;
   background: rgba(255, 255, 255, 0.85);
@@ -191,32 +164,27 @@
   box-shadow: 0 4px 12px rgba(137, 86, 221, 0.1);
   color: #4a007e;
 }
-
 .checkout-form h2 {
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
   color: #6a1b9a;
   text-align: center;
 }
-
 .checkout-form form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-
 .form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
-
 .form-group label {
   margin-bottom: 0.4rem;
   font-weight: 600;
   color: #5e4b6e;
 }
-
 .form-group input {
   padding: 0.6rem 1rem;
   border: 1px solid #d1c4e9;
@@ -225,13 +193,11 @@
   font-size: 1rem;
   transition: border-color 0.3s;
 }
-
 .form-group input:focus {
   border-color: #ab47bc;
   outline: none;
   background-color: #fff;
 }
-
 .error {
   color: #d32f2f;
   background-color: #fdecea;
@@ -240,22 +206,17 @@
   margin-top: 0.3rem;
   font-size: 0.85rem;
 }
-
-/* Séparation visuelle des sections */
 .checkout-form h2 + div {
   border-top: 1px solid #e0bbec;
   padding-top: 1.5rem;
   margin-top: 1.5rem;
 }
-
-/* Boutons du formulaire */
 .form-actions {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   margin-top: 2rem;
 }
-
 .cancel-button {
   padding: 0.6rem 1.4rem;
   background-color: #d291bc;
@@ -266,11 +227,9 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .cancel-button:hover {
   background-color: #b06ab3;
 }
-
 .submit-button {
   padding: 0.6rem 1.8rem;
   background: linear-gradient(to right, #a18cd1, #fbc2eb);
@@ -282,24 +241,19 @@
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 10px rgba(137, 86, 221, 0.2);
 }
-
 .submit-button:hover:enabled {
   background: linear-gradient(to right, #8e44ad, #e598cb);
   transform: translateY(-2px);
 }
-
 .submit-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-
-/* Responsive */
 @media (max-width: 768px) {
   .form-actions {
     flex-direction: column;
     align-items: stretch;
   }
-
   .form-actions button {
     width: 100%;
   }

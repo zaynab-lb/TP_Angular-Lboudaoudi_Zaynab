@@ -24,4 +24,7 @@ export class HomeComponent {
     this.router.navigate(['/users']);
   }
 
+  navigateToProductList(): void {
+    this.router.navigate(['/products']);
+  }
 }
