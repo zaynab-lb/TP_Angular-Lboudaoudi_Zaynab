@@ -3,6 +3,12 @@
 <div class="product-list-container">
   <h2>Liste des Produits</h2>
 
+  <button (click)="refresh()" class="refresh-btn">
+    Rafraîchir la liste
+  </button>
+
+  <button (click)="goToAddProduct()" class="add-btn">Ajouter un produit</button>
+
   <div *ngIf="isLoading">Chargement des produits...</div>
 
   <div *ngIf="!isLoading && products.length === 0">Aucun produit trouvé.</div>

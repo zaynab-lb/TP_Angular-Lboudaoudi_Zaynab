@@ -3,6 +3,7 @@ import { MenuComponent } from '../menu/menu.component';
 import { CommonModule } from '@angular/common';
 import { Product } from '../models/Product';
 import { ProductService } from '../services/product/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -15,23 +16,25 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   isLoading = false;
 
-   constructor(private productService: ProductService) {}
+   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadProducts();
   }
 
+  
   loadProducts(): void {
-    this.isLoading = true;
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error("Erreur lors du chargement des produits", err);
-        this.isLoading = false;
-      }
-    });
+  this.productService.getProducts().subscribe(products => {
+    this.products = products;
+  });
+}
+
+  goToAddProduct(): void {
+  this.router.navigate(['/add-product']);
+}
+
+refresh(): void {
+    this.loadProducts();
   }
+
 }

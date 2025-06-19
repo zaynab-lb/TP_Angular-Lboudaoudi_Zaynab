@@ -14,6 +14,7 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
 import { OrderConfirmationComponent } from '../order-confirmation/order-confirmation.component';
 import { OrderListComponent } from '../order-list/order-list.component';
 import { ProductListComponent } from '../product-list/product-list.component';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 export const routes: Routes = 
 [
@@ -91,6 +92,14 @@ export const routes: Routes =
   canActivate: [AuthGuard, RoleGuard],
   data: { role: UserType.Admin },
   title: 'Liste des produits'
+},
+
+{
+  path: 'add-product',
+ component: AddProductComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { role: UserType.Admin },
+  title: 'Ajouter produit'
 }
 
 ];

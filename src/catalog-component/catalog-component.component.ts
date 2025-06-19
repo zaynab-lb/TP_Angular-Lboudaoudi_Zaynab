@@ -6,10 +6,11 @@ import { ProductDetailsComponent } from "../product-details-component/product-de
 import { ProductService } from '../services/product/product.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user/user.service';
 import { MenuComponent } from '../menu/menu.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-catalog-component',
@@ -33,16 +34,25 @@ export class CatalogComponent implements OnInit {
 
 
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, private userService: UserService) {}
+  constructor(private productService: ProductService, private route: ActivatedRoute, private userService: UserService,  private router: Router) {}
 
 
   ngOnInit(): void {
     this.checkAuthStatus();
+
+    this.loadProductsFromRoute();
     //this.loadProducts(this.filteredProducts);
+   this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.loadProductsFromRoute();
+    });
+  }
+
+   loadProductsFromRoute() {
     this.route.queryParams.subscribe(params => {
       const filter = params['filter'] || null;
       this.loadProducts(filter);
-      //this.filteredProducts = filter ? this.products.filter(p => p.ProductCategory === filter) : this.products;
     });
   }
 

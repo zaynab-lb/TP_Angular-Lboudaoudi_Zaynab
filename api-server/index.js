@@ -103,10 +103,6 @@ app.post("/api/signin", (req, res) => {
 });
 
 
-app.get("/api/products", (req, res) => {
-  res.send(products);
-});
-
 app.get("/api/products/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const product = products.find(p => p.productId === id);
@@ -298,20 +294,9 @@ app.post("/api/orders", (req, res) => {
 
 // Modifiez vos routes /api/products pour utiliser le tableau products
 app.get("/api/products", (req, res) => {
+   console.log("Liste des produits :", products);
   res.send(products); // utilise la variable globale
 });
-
-app.get("/api/products/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const product = products.find(p => p.productId === id);
-
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "Produit non trouvé" });
-  }
-});
-
 
 app.get("/api/products/:id", (req, res) => {
   const id = parseInt(req.params.id);
@@ -382,6 +367,30 @@ app.get("/api/orders/details/:orderId", (req, res) => {
     res.status(404).json({ message: "Commande non trouvée" });
   }
 });
+
+// Route pour ajouter un produit
+app.post("/api/products", (req, res) => {
+  const { productTitle, productPrice, productQuantity, productCategory, productImage } = req.body;
+
+  const newProduct = {
+    productId: products.length + 1,
+    productTitle,
+    productPrice,
+    productQuantity,
+    productCategory,
+    productImage
+  };
+
+  products.push(newProduct);
+
+  console.log("✅ Nouveau produit ajouté :", newProduct);
+  console.log("🔎 Tous les produits :", products);
+
+  res.status(201).json({ message: "Produit ajouté", product: newProduct });
+});
+
+
+
 
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

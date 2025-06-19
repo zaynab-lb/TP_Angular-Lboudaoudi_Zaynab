@@ -45,4 +45,9 @@ getProductStock(productId: number): Observable<number> {
     map(product => product.productQuantity)
   );
 }
+
+addProduct(productData: any): Observable<any> {
+  return this.http.post<any[]>('http://localhost:3000/api/products', productData);
+}
+
 }
