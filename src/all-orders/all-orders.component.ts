@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AllOrdersComponent implements OnInit {
   orders: Order[] = [];
+  isLoading: boolean = false;
 
   constructor(private orderService: OrderService) {}
 
@@ -21,12 +22,17 @@ export class AllOrdersComponent implements OnInit {
   }
 
   loadOrders(): void {
+    this.isLoading = true;
     this.orderService.getAllOrders().subscribe({
       next: orders => {
         console.log('Commandes reçues:', orders);
         this.orders = orders;
+        this.isLoading = false;
       },
-      error: err => console.error("Erreur chargement des commandes", err)
+     error: err => {
+        console.error("Erreur chargement des commandes", err);
+        this.isLoading = false;
+      }
     });
   }
 

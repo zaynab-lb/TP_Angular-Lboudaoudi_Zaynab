@@ -26,10 +26,14 @@
       </a>
 
       <a routerLink="/users" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
-       Liste des utilisateurs
+       Utilisateurs
       </a>
       <a routerLink="/products" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
-       Liste des produits
+       Produits
+      </a>
+
+      <a routerLink="/all-orders" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
+       Commandes
       </a>
 
       <a routerLink="/my-orders" class="btn cart-btn" *ngIf="userRole === 'Member'" routerLinkActive="active">
