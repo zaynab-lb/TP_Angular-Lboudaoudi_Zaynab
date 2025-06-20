@@ -54,4 +54,9 @@ updateProduct(id: number, updatedProduct: any): Observable<any> {
   return this.http.put<any>(`http://localhost:3000/api/products/${id}`, updatedProduct);
 }
 
+deleteProduct(id: number): Observable<any> {
+  return this.http.delete(`http://localhost:3000/api/products/${id}`);
+}
+
+
 }

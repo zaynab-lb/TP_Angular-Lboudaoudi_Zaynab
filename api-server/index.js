@@ -408,6 +408,18 @@ app.put("/api/products/:id", (req, res) => {
   res.status(200).json({ message: "Produit mis à jour", product: updatedProduct });
 });
 
+app.delete("/api/products/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = products.findIndex(p => p.productId === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Produit non trouvé" });
+  }
+
+  products.splice(index, 1);
+  console.log(`Produit avec ID ${id} supprimé`);
+  res.status(200).json({ message: "Produit supprimé avec succès" });
+});
 
 
 const port = 3000;

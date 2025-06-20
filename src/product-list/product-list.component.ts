@@ -41,5 +41,17 @@ refresh(): void {
   this.router.navigate(['/edit-product', id]);
 }
 
+deleteProduct(id: number): void {
+  if (confirm("Voulez-vous vraiment supprimer ce produit ?")) {
+    this.productService.deleteProduct(id).subscribe({
+      next: () => {
+        console.log("✅ Produit supprimé");
+        this.loadProducts(); // recharger la liste après suppression
+      },
+      error: err => console.error("❌ Erreur de suppression :", err)
+    });
+  }
+}
+
 
 }
