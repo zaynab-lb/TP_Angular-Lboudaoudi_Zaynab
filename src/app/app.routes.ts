@@ -16,6 +16,7 @@ import { OrderListComponent } from '../order-list/order-list.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { EditProductComponent } from '../edit-product/edit-product.component';
+import { AllOrdersComponent } from '../all-orders/all-orders.component';
 
 export const routes: Routes = 
 [
@@ -109,7 +110,14 @@ export const routes: Routes =
   canActivate: [AuthGuard, RoleGuard],
   data: { role: UserType.Admin },
   title: 'Modifier produit'
-}
+},
 
+{
+  path: 'all-orders',
+  component: AllOrdersComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { role: UserType.Admin },
+  title: 'Toutes les commandes'
+}
 
 ];

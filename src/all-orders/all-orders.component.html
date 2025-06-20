@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+<h2>Toutes les commandes</h2>
+
+<button (click)="refresh()" class="refresh-btn">Rafraîchir la liste</button>
+
+<div *ngIf="orders.length > 0; else noOrders">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Utilisateur</th>
+        <th>Total</th>
+        <th>Date</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.userId }}</td>
+        <td>{{ order.total }} MAD</td>
+        <td>{{ order.orderDate | date:'short' }}</td>
+        <td>{{ order.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noOrders>
+  <p>Aucune commande trouvée.</p>
+</ng-template>

@@ -422,6 +422,10 @@ app.delete("/api/products/:id", (req, res) => {
 });
 
 
+app.get("/api/allorders", (req, res) => {
+  res.status(200).json(orders);
+});
+
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));
 

@@ -27,4 +27,8 @@ export class HomeComponent {
   navigateToProductList(): void {
     this.router.navigate(['/products']);
   }
+
+navigateToAllOrders(): void {
+  this.router.navigate(['/all-orders']);
+}
 }

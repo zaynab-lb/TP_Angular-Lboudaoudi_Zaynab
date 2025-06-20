@@ -4,7 +4,7 @@ import { UserService } from '../user/user.service';
 import { ShoppingCartItem } from '../../models/ShoppingCartItem';
 import { Order, PaymentInfo, ShippingInfo } from '../../models/order';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs';
+import { catchError, map, of, tap } from 'rxjs';
 
 export interface OrderItem {
   productId: number;
@@ -70,5 +70,17 @@ export class OrderService {
     };
   }
 
-  
+ 
+getAllOrders(): Observable<Order[]> {
+  console.log('Fetching all orders...'); // Log de débogage
+  return this.http.get<ApiOrder[]>(`/api/allorders`).pipe(
+    tap(orders => console.log('Orders received from API:', orders)), // Log les données reçues
+    map(apiOrders => apiOrders.map(apiOrder => this.mapApiOrderToOrder(apiOrder))),
+    catchError(error => {
+      console.error('Error fetching orders:', error);
+      return of([]); // Retourne un tableau vide en cas d'erreur
+    })
+  );
+}
+
 }
