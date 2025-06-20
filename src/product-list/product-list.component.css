@@ -1,19 +1,129 @@
 .product-list-container {
-  padding: 20px;
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(137, 86, 221, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #4a007e;
 }
 
-table {
+.product-list-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #6a1b9a;
+}
+
+.refresh-btn,
+.add-btn {
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  margin: 0.5rem 0.5rem 1rem 0;
+  box-shadow: 0 4px 10px rgba(137, 86, 221, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.refresh-btn:hover,
+.add-btn:hover {
+  background: linear-gradient(to right, #8e44ad, #e598cb);
+  transform: translateY(-2px);
+}
+
+.loading,
+.no-products {
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.product-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  margin-top: 1rem;
+  font-size: 0.95rem;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 10px;
+.product-table th,
+.product-table td {
+  padding: 0.8rem 1rem;
   text-align: left;
+  border-bottom: 1px solid #e0bbec;
 }
 
-img {
-  border-radius: 8px;
+.product-table th {
+  background-color: #f3e5f5;
+  color: #6a1b9a;
+  font-weight: 600;
+}
+
+.product-table tr:hover {
+  background-color: #f9f0ff;
+}
+
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(137, 86, 221, 0.1);
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-btn {
+  background-color: #9575cd;
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.edit-btn:hover {
+  background-color: #7e57c2;
+}
+
+.delete-btn {
+  background-color: #ef9a9a;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+@media (max-width: 768px) {
+  .product-table {
+    font-size: 0.85rem;
+  }
+
+  .product-table th,
+  .product-table td {
+    padding: 0.6rem;
+  }
+
+  .refresh-btn,
+  .add-btn {
+    width: 100%;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-img {
+    width: 50px;
+    height: 50px;
+  }
 }

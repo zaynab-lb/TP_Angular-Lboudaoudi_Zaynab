@@ -1,0 +1,120 @@
+.edit-product-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(137, 86, 221, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #4a007e;
+}
+
+.edit-product-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #6a1b9a;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #5e4b6e;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1c4e9;
+  border-radius: 12px;
+  background-color: #fafafa;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #ab47bc;
+  background-color: #fff;
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+button[type="submit"] {
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 4px 10px rgba(137, 86, 221, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button[type="submit"]:hover:enabled {
+  background: linear-gradient(to right, #8e44ad, #e598cb);
+  transform: translateY(-2px);
+}
+
+button[type="button"] {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button[type="button"]:hover {
+  background-color: #cfcfcf;
+}
+
+.success-message,
+.error-message {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success-message {
+  background-color: #e1f5fe;
+  color: #00796b;
+}
+
+.error-message {
+  background-color: #fdecea;
+  color: #d32f2f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-actions {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}

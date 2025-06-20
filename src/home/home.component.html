@@ -1,13 +1,16 @@
 <app-menu></app-menu>
-<div class="admin-container">
-  <h1>Bienvenue Admin !</h1>
-  <p>Page d'administration</p>
-  
-  <button (click)="navigateToUserList()" class="admin-button">
-    Voir la liste des utilisateurs
-  </button>
 
-  <button (click)="navigateToProductList()" class="admin-button">
-    Voir la liste des produits
-  </button>
+<div class="admin-container">
+  <h2>Bienvenue sur le tableau de bord Admin</h2>
+  <p class="admin-subtitle">Gérez les utilisateurs et les produits depuis cette interface</p>
+
+  <div class="admin-actions">
+    <button (click)="navigateToUserList()" class="admin-button">
+      👥 Liste des utilisateurs
+    </button>
+
+    <button (click)="navigateToProductList()" class="admin-button">
+      🛍️ Liste des produits
+    </button>
+  </div>
 </div>

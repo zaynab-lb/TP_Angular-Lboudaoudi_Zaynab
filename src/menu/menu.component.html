@@ -9,6 +9,9 @@
     <a *ngIf="userRole === 'Member'" routerLink="/catalog" routerLinkActive="active" class="nav-item">
       <span>Catalogue</span>
     </a>
+    <a routerLink="/home" class="nav-item" *ngIf="userRole === 'Admin'" routerLinkActive="active">
+       <span>Accueil</span>
+      </a>
   </nav>
 
   <div class="user-actions">
@@ -22,12 +25,11 @@
         Panier
       </a>
 
-      <a routerLink="/home" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
-       Tableau de bord
-      </a>
-
       <a routerLink="/users" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
        Liste des utilisateurs
+      </a>
+      <a routerLink="/products" class="btn cart-btn" *ngIf="userRole === 'Admin'" routerLinkActive="active">
+       Liste des produits
       </a>
 
       <a routerLink="/my-orders" class="btn cart-btn" *ngIf="userRole === 'Member'" routerLinkActive="active">

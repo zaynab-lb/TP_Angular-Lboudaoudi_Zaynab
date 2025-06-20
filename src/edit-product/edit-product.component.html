@@ -1,29 +1,42 @@
 <app-menu></app-menu>
+
 <div class="edit-product-container">
   <h2>Modifier le produit</h2>
-  <form (ngSubmit)="updateProduct()">
-    <label>Titre</label>
-    <input [(ngModel)]="product.productTitle" name="title" required />
+  <form #editForm="ngForm" (ngSubmit)="updateProduct()">
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input id="title" name="title" type="text" [(ngModel)]="product.productTitle" required />
+    </div>
 
-    <label>Prix</label>
-    <input type="number" [(ngModel)]="product.productPrice" name="price" required />
+    <div class="form-group">
+      <label for="price">Prix</label>
+      <input id="price" name="price" type="number" [(ngModel)]="product.productPrice" required />
+    </div>
 
-    <label>Quantité</label>
-    <input type="number" [(ngModel)]="product.productQuantity" name="quantity" required />
+    <div class="form-group">
+      <label for="quantity">Quantité</label>
+      <input id="quantity" name="quantity" type="number" [(ngModel)]="product.productQuantity" required />
+    </div>
 
-    <label>Catégorie</label>
-    <select [(ngModel)]="product.productCategory" name="category" required>
-      <option value="Écran">Écrans</option>
-      <option value="Ordinateur">Ordinateurs</option>
-      <option value="Clavier">Claviers</option>
-      <option value="Souris">Souris</option>
-      <option value="Accessoires">Accessoires</option>
-    </select>
+    <div class="form-group">
+      <label for="category">Catégorie</label>
+      <select id="category" name="category" [(ngModel)]="product.productCategory" required>
+        <option value="Écran">Écrans</option>
+        <option value="Ordinateur">Ordinateurs</option>
+        <option value="Clavier">Claviers</option>
+        <option value="Souris">Souris</option>
+        <option value="Accessoires">Accessoires</option>
+      </select>
+    </div>
 
-    <label>Image</label>
-    <input [(ngModel)]="product.productImage" name="image" required />
+    <div class="form-group">
+      <label for="image">Image</label>
+      <input id="image" name="image" type="text" [(ngModel)]="product.productImage" required />
+    </div>
 
-    <button type="submit">Enregistrer</button>
-    <button type="button" (click)="cancel()">Annuler</button>
+    <div class="form-actions">
+      <button type="submit" [disabled]="editForm.invalid">Enregistrer</button>
+      <button type="button" (click)="cancel()">Annuler</button>
+    </div>
   </form>
 </div>
