@@ -83,4 +83,8 @@ getAllOrders(): Observable<Order[]> {
   );
 }
 
+updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
+  return this.http.put(`/api/orders/${orderId}`, { status: newStatus });
+}
+
 }

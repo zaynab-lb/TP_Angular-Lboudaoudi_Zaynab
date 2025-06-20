@@ -24,3 +24,11 @@ tr:hover {
   margin-top: 20px;
   color: #666;
 }
+
+.validate-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}

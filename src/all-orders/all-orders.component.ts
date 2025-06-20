@@ -33,5 +33,16 @@ export class AllOrdersComponent implements OnInit {
   refresh(): void {
     this.loadOrders();
   }
+
+  validateOrder(orderId: number): void {
+  this.orderService.updateOrderStatus(orderId, "Validée").subscribe({
+    next: () => {
+      console.log(`Commande ${orderId} validée`);
+      this.loadOrders(); // recharge la liste
+    },
+    error: err => console.error("Erreur de validation :", err)
+  });
+}
+
 }
 

@@ -426,6 +426,21 @@ app.get("/api/allorders", (req, res) => {
   res.status(200).json(orders);
 });
 
+// Mettre à jour le statut d'une commande
+app.put("/api/orders/:orderId", (req, res) => {
+  const orderId = parseInt(req.params.orderId);
+  const { status } = req.body;
+
+  const order = orders.find(o => o.orderId === orderId);
+
+  if (!order) {
+    return res.status(404).json({ message: "Commande non trouvée" });
+  }
+
+  order.status = status || order.status;
+  return res.status(200).json({ message: "Statut mis à jour", order });
+});
+
 const port = 3000;
 app.listen(port, () => console.log(`API Server listening on port ${port}`));
 
