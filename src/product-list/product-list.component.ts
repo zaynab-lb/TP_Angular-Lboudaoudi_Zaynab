@@ -37,4 +37,9 @@ refresh(): void {
     this.loadProducts();
   }
 
+  editProduct(id: number): void {
+  this.router.navigate(['/edit-product', id]);
+}
+
+
 }

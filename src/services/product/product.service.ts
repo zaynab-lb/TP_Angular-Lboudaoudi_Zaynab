@@ -50,4 +50,8 @@ addProduct(productData: any): Observable<any> {
   return this.http.post<any[]>('http://localhost:3000/api/products', productData);
 }
 
+updateProduct(id: number, updatedProduct: any): Observable<any> {
+  return this.http.put<any>(`http://localhost:3000/api/products/${id}`, updatedProduct);
+}
+
 }

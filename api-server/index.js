@@ -383,12 +383,30 @@ app.post("/api/products", (req, res) => {
 
   products.push(newProduct);
 
-  console.log("✅ Nouveau produit ajouté :", newProduct);
-  console.log("🔎 Tous les produits :", products);
+  console.log("Nouveau produit ajouté :", newProduct);
+  console.log("Tous les produits :", products);
 
   res.status(201).json({ message: "Produit ajouté", product: newProduct });
 });
 
+// Route pour modifier un produit
+app.put("/api/products/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = products.findIndex(p => p.productId === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Produit non trouvé" });
+  }
+
+  const updatedProduct = {
+    ...products[index],
+    ...req.body,
+    productId: id
+  };
+
+  products[index] = updatedProduct;
+  res.status(200).json({ message: "Produit mis à jour", product: updatedProduct });
+});
 
 
 

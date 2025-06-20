@@ -1,0 +1,29 @@
+<app-menu></app-menu>
+<div class="edit-product-container">
+  <h2>Modifier le produit</h2>
+  <form (ngSubmit)="updateProduct()">
+    <label>Titre</label>
+    <input [(ngModel)]="product.productTitle" name="title" required />
+
+    <label>Prix</label>
+    <input type="number" [(ngModel)]="product.productPrice" name="price" required />
+
+    <label>Quantité</label>
+    <input type="number" [(ngModel)]="product.productQuantity" name="quantity" required />
+
+    <label>Catégorie</label>
+    <select [(ngModel)]="product.productCategory" name="category" required>
+      <option value="Écran">Écrans</option>
+      <option value="Ordinateur">Ordinateurs</option>
+      <option value="Clavier">Claviers</option>
+      <option value="Souris">Souris</option>
+      <option value="Accessoires">Accessoires</option>
+    </select>
+
+    <label>Image</label>
+    <input [(ngModel)]="product.productImage" name="image" required />
+
+    <button type="submit">Enregistrer</button>
+    <button type="button" (click)="cancel()">Annuler</button>
+  </form>
+</div>

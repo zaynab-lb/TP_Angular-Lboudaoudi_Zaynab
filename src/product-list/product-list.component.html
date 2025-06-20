@@ -21,6 +21,7 @@
         <th>Quantité</th>
         <th>Catégorie</th>
         <th>Image</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,9 @@
         <td>{{ product.ProductCategory }}</td>
         <td>
           <img [src]="product.ProductImage" alt="image" width="60" height="60" />
+        </td>
+        <td>
+          <button (click)="editProduct(product.ProductId)">Modifier</button>
         </td>
       </tr>
     </tbody>
